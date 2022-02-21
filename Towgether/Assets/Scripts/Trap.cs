@@ -8,7 +8,7 @@ public class Trap : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Dead");
+            Debug.Log("Deadl");
         }
     }
 }
