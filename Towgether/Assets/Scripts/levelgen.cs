@@ -19,16 +19,16 @@ public class levelgen : MonoBehaviour
     int random_num_to_spawn_ToChoose_jumppad;
 
     int Counter_for_platforms;
-
+    int RandomForTypeOfPlatform;
     public enum PlatformEnum { platform, redplatform, woodPlatform, pinkplatform, OutlinePlatformPlatform, DissolvingPlatform }
 
     private void Awake()
     {
         PlatformList = new List<Platform>();
-        maxTimer = .1f;
+        maxTimer = 0.28f;
         GameStarted = false;
         Counter_for_platforms = 0;
-
+        RandomForTypeOfPlatform = 0;
         setPlatform(PlatformEnum.platform);
     }
     private void Start()
@@ -59,7 +59,7 @@ public class levelgen : MonoBehaviour
 
         HandlePlatFormDeletion();
         SpawnTimer();
-        setPlatform(GetPlatform());
+        
     }
     void HandlePlatFormDeletion()
     {
@@ -87,21 +87,22 @@ public class levelgen : MonoBehaviour
             Timer -= Time.deltaTime;
             if (Timer <= 0)
             {
-                CreatePlatform(startPosition1, startposition2);
+                
+                setPlatform(GetPlatform());
                 Timer += maxTimer;
             }
         }
     }
     
-    void CreatePlatform(Vector3 SpawnPosition1, Vector3 SpawnPosition2)
+    void CreatePlatform(Vector3 SpawnPosition1, Vector3 SpawnPosition2,Transform platform1,Transform platform2)
     {
         
 
-        Transform platform1 = Instantiate(GameAssets.Getinstance().platform, SpawnPosition1, Quaternion.identity);
-        Transform platform2 = Instantiate(GameAssets.Getinstance().platform, SpawnPosition2, Quaternion.identity);
+         platform1 = Instantiate(platform1,SpawnPosition1, Quaternion.identity);
+         platform2 = Instantiate(platform2, SpawnPosition2, Quaternion.identity);
 
-        SpawnPosition1.x = Random.Range(-8.200961f, -1.97f);
-        SpawnPosition2.x = Random.Range(2.91f, 8.200961f);
+        SpawnPosition1.x = Random.Range(-8.5f, -1.75f);
+        SpawnPosition2.x = Random.Range(8.5f, 1.76f);
 
         SpawnPosition1.y += Random.Range(4f, 7f);
         SpawnPosition2.y += Random.Range(4f, 7f);
@@ -187,39 +188,52 @@ public class levelgen : MonoBehaviour
         switch (diffculty)
         {
             case PlatformEnum.platform:
-                Debug.Log("0");
+                
+                CreatePlatform(startPosition1, startposition2,GameAssets.Getinstance().platform,GameAssets.Getinstance().platform);
                 break;
 
             case PlatformEnum.redplatform:
-                Debug.Log("1");
+               
+                CreatePlatform(startPosition1, startposition2, GameAssets.Getinstance().RedPlatform, GameAssets.Getinstance().RedPlatform);
                 break;
 
             case PlatformEnum.pinkplatform:
-                Debug.Log("2");
+                
+                CreatePlatform(startPosition1, startposition2, GameAssets.Getinstance().WoodPlatform, GameAssets.Getinstance().WoodPlatform);
                 break;
 
             case PlatformEnum.OutlinePlatformPlatform:
-                Debug.Log("3");
+                
+                CreatePlatform(startPosition1, startposition2, GameAssets.Getinstance().DissolvingPlatform, GameAssets.Getinstance().DissolvingPlatform);
                 break;
             case PlatformEnum.woodPlatform:
-                Debug.Log("4");
+                
+                CreatePlatform(startPosition1, startposition2, GameAssets.Getinstance().OutlinePlatformPlatform, GameAssets.Getinstance().OutlinePlatformPlatform);
                 break;
 
             case PlatformEnum.DissolvingPlatform:
-                Debug.Log("5");
+                
+                CreatePlatform(startPosition1, startposition2, GameAssets.Getinstance().PinkPlatform, GameAssets.Getinstance().PinkPlatform);
                 break;
 
             
         }
     }
     private PlatformEnum GetPlatform()
-    {        
-        if (Counter_for_platforms >= 200) return PlatformEnum.DissolvingPlatform;
-        if (Counter_for_platforms >= 160) return PlatformEnum.woodPlatform;
-        if (Counter_for_platforms >= 120) return PlatformEnum.OutlinePlatformPlatform; 
-        if (Counter_for_platforms >= 80) return PlatformEnum.pinkplatform;
-        if (Counter_for_platforms >= 40) return PlatformEnum.redplatform;
-        return PlatformEnum.platform;
+    {
+        
+        if (Counter_for_platforms%30==0)
+            RandomForTypeOfPlatform = Random.Range(0,6);
+        
+        
+            if (RandomForTypeOfPlatform == 0) return PlatformEnum.DissolvingPlatform;
+            if (RandomForTypeOfPlatform == 1) return PlatformEnum.woodPlatform;
+            if (RandomForTypeOfPlatform == 2) return PlatformEnum.OutlinePlatformPlatform;
+            if (RandomForTypeOfPlatform == 3) return PlatformEnum.pinkplatform;
+            if (RandomForTypeOfPlatform == 4) return PlatformEnum.redplatform; 
+
+         return PlatformEnum.platform;
+        
     }
     private class Platform
     {

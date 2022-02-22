@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8322877195547770709}
   - component: {fileID: 7153189826076030955}
   - component: {fileID: 7845675072249276981}
+  - component: {fileID: 1934559632773674014}
   m_Layer: 7
   m_Name: RedPlatform
   m_TagString: Untagged
@@ -125,3 +126,15 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &1934559632773674014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7124585871354356066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252e16762d485d94ea675136299386d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

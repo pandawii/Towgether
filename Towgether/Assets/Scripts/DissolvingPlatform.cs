@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform : MonoBehaviour
+public class DissolvingPlatform : MonoBehaviour
 {
     SpriteRenderer sp;
     float alpha = 0.5f;
@@ -23,7 +23,7 @@ public class Platform : MonoBehaviour
         }
         if (alpha <= 0)
         {
-            Destroy(gameObject);
+            gameObject.GetComponent<EdgeCollider2D>().enabled = false; 
         }
     }
     private void OnCollisionEnter2D(Collision2D col)

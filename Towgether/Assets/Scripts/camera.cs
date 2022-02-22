@@ -58,12 +58,12 @@ public class camera : MonoBehaviour
                 break;
 
             case Diffculty.hard:
-            transform.position += new Vector3(0, 5.5f, 0) * Time.deltaTime;
+            transform.position += new Vector3(0, 5.3f, 0) * Time.deltaTime;
                
                 break;
 
             case Diffculty.impossible:
-            transform.position += new Vector3(0, 5.7f, 0) * Time.deltaTime;
+            transform.position += new Vector3(0, 5.5f, 0) * Time.deltaTime;
              
                 break;
         }

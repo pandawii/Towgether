@@ -68,7 +68,7 @@ public class player : MonoBehaviour
 
         if (Input.GetMouseButton(0) && BoostCapacity > 0)
         {
-            rb.AddForce(Vector2.up * 0.6f, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * 100f*Time.deltaTime, ForceMode2D.Impulse);
             BoostCapacity -= Time.deltaTime;
             Dust.Play();
         }
@@ -103,10 +103,10 @@ public class player : MonoBehaviour
          if(Input.GetKeyDown(KeyCode.W) && isGrounded && PoweredUp)
         {
             Vector2 velocity = rb.velocity;
-            velocity.y = JumpForce*1.5f;
+            velocity.y = JumpForce*1.7f;
             rb.velocity = velocity;
             anim.SetTrigger("Jump");
-            Debug.Log("poweredup");
+           
             Dust.Play();
         }
         
