@@ -137,12 +137,12 @@ public class player : MonoBehaviour
         if (col.gameObject.CompareTag("Arrow"))
         {
             PoweredUp = true;
-            
+            timerForPowerUp = timerForPowerUpMax;
         }
         if (timerForPowerUp <= 0)
         {
             PoweredUp = false;
-            timerForPowerUp += timerForPowerUpMax;
+            
         }
         
     }
