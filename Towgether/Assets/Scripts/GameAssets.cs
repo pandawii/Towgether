@@ -14,8 +14,15 @@ public class GameAssets : MonoBehaviour
     {
         instance = this;
     }
-
+    [Header("Platforms")]
     public Transform platform;
+    public Transform RedPlatform;
+    public Transform PinkPlatform;
+    public Transform WoodPlatform;
+    public Transform OutlinePlatformPlatform;
+    public Transform DissolvingPlatform;
+
+    [Header("gameAssets")]
     public Transform Jump_pad;
     public Transform Trap;
     public Transform Explosion;

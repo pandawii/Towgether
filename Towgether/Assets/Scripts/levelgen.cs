@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class levelgen : MonoBehaviour
 {
-    Vector3 startPosition1 = new Vector3(0f, 159.1f, 0f);
-    Vector3 startposition2 = new Vector3(0f, 159.1f, 0f);
+    Vector3 startPosition1 = new Vector3(0f, 165f, 0f);
+    Vector3 startposition2 = new Vector3(0f, 165f, 0f);
 
     Vector3 firstPlatforms=new Vector3(0,-1,0);
     Vector3 firstPlatforms2 = new Vector3(0, -1, 0);
@@ -17,16 +17,23 @@ public class levelgen : MonoBehaviour
 
     int counter_To_Spawn_JumpPad;
     int random_num_to_spawn_ToChoose_jumppad;
-    
+
+    int Counter_for_platforms;
+
+    public enum PlatformEnum { platform, redplatform, woodPlatform, pinkplatform, OutlinePlatformPlatform, DissolvingPlatform }
+
     private void Awake()
     {
         PlatformList = new List<Platform>();
         maxTimer = .1f;
         GameStarted = false;
-       
+        Counter_for_platforms = 0;
+
+        setPlatform(PlatformEnum.platform);
     }
     private void Start()
     {
+        
         for (int i = 0; i < 30; i++)
         {
             Transform platform1 = Instantiate(GameAssets.Getinstance().platform, firstPlatforms, Quaternion.identity);
@@ -52,7 +59,7 @@ public class levelgen : MonoBehaviour
 
         HandlePlatFormDeletion();
         SpawnTimer();
-        
+        setPlatform(GetPlatform());
     }
     void HandlePlatFormDeletion()
     {
@@ -85,9 +92,11 @@ public class levelgen : MonoBehaviour
             }
         }
     }
+    
     void CreatePlatform(Vector3 SpawnPosition1, Vector3 SpawnPosition2)
     {
         
+
         Transform platform1 = Instantiate(GameAssets.Getinstance().platform, SpawnPosition1, Quaternion.identity);
         Transform platform2 = Instantiate(GameAssets.Getinstance().platform, SpawnPosition2, Quaternion.identity);
 
@@ -103,7 +112,7 @@ public class levelgen : MonoBehaviour
         Platform platform = new Platform(platform1, platform2);
         PlatformList.Add(platform);
         HandleJumpPadSpawn(SpawnPosition1,SpawnPosition2);
-
+        Counter_for_platforms++;
 
     }
     void HandleJumpPadSpawn(Vector3 spawnposition1,Vector3 spawnposition2)
@@ -172,7 +181,46 @@ public class levelgen : MonoBehaviour
 
         }
     }
-    
+
+    private void setPlatform(PlatformEnum diffculty)
+    {
+        switch (diffculty)
+        {
+            case PlatformEnum.platform:
+                Debug.Log("0");
+                break;
+
+            case PlatformEnum.redplatform:
+                Debug.Log("1");
+                break;
+
+            case PlatformEnum.pinkplatform:
+                Debug.Log("2");
+                break;
+
+            case PlatformEnum.OutlinePlatformPlatform:
+                Debug.Log("3");
+                break;
+            case PlatformEnum.woodPlatform:
+                Debug.Log("4");
+                break;
+
+            case PlatformEnum.DissolvingPlatform:
+                Debug.Log("5");
+                break;
+
+            
+        }
+    }
+    private PlatformEnum GetPlatform()
+    {        
+        if (Counter_for_platforms >= 200) return PlatformEnum.DissolvingPlatform;
+        if (Counter_for_platforms >= 160) return PlatformEnum.woodPlatform;
+        if (Counter_for_platforms >= 120) return PlatformEnum.OutlinePlatformPlatform; 
+        if (Counter_for_platforms >= 80) return PlatformEnum.pinkplatform;
+        if (Counter_for_platforms >= 40) return PlatformEnum.redplatform;
+        return PlatformEnum.platform;
+    }
     private class Platform
     {
         private Transform platform;
@@ -194,4 +242,5 @@ public class levelgen : MonoBehaviour
 
     }
 
+    
 }

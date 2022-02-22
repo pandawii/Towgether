@@ -49,22 +49,22 @@ public class camera : MonoBehaviour
         {
             case Diffculty.easy:
             transform.position += new Vector3(0, 3.4f, 0) * Time.deltaTime;
-                Debug.Log("1");
+               
             break;
 
             case Diffculty.medium:
             transform.position += new Vector3(0,4.5f, 0) * Time.deltaTime;
-                Debug.Log("2");
+                
                 break;
 
             case Diffculty.hard:
             transform.position += new Vector3(0, 5.5f, 0) * Time.deltaTime;
-                Debug.Log("3");
+               
                 break;
 
             case Diffculty.impossible:
             transform.position += new Vector3(0, 5.7f, 0) * Time.deltaTime;
-                Debug.Log("4");
+             
                 break;
         }
     }
