@@ -49,7 +49,7 @@ public class levelgen : MonoBehaviour
             PlatformList.Add(platform);
             if (i <= 20)
             {
-                HandleJumpPadSpawn(firstPlatforms, firstPlatforms2);
+                HandleJumpPadSpawn(platform1,platform2);
             }
         }
     }
@@ -112,11 +112,11 @@ public class levelgen : MonoBehaviour
 
         Platform platform = new Platform(platform1, platform2);
         PlatformList.Add(platform);
-        HandleJumpPadSpawn(SpawnPosition1,SpawnPosition2);
+        HandleJumpPadSpawn(platform1,platform2);
         Counter_for_platforms++;
 
     }
-    void HandleJumpPadSpawn(Vector3 spawnposition1,Vector3 spawnposition2)
+    void HandleJumpPadSpawn(Transform platform1,Transform platform2)
     {
         counter_To_Spawn_JumpPad++;
         random_num_to_spawn_ToChoose_jumppad = Random.Range(1, 7);
@@ -128,54 +128,66 @@ public class levelgen : MonoBehaviour
                    
                     //instantiate jump pad
                     Transform JumpPad = Instantiate(GameAssets.Getinstance().Jump_pad);
-                    JumpPad.position = spawnposition1;
-                    JumpPad.position += new Vector3(0, 0.735f, 0); 
+                    
+                    JumpPad.position = platform1.position;
+                    JumpPad.position += new Vector3(0, 0.735f, 0);
+                    JumpPad.SetParent(platform1);
                 }
                 break;
             case 2:
-                if (counter_To_Spawn_JumpPad % 8 == 0)
+                if (counter_To_Spawn_JumpPad % 5 == 0)
                 {
 
                     Transform Trap = Instantiate(GameAssets.Getinstance().Trap);
-                    Trap.position = spawnposition1;
-                    Trap.position += new Vector3(1.54f, 1.5f, 0);
+                   
+                    Trap.position = platform1.position;
+                    Trap.position += new Vector3( 1.54f, 1.5f, 0);
+                    Trap.SetParent(platform1);
                 }
                 break;
             case 3:
-                if (counter_To_Spawn_JumpPad % 8 == 0)
+                if (counter_To_Spawn_JumpPad % 4 == 0)
                 {
 
                     Transform PowerUp = Instantiate(GameAssets.Getinstance().PowerUp);
-                    PowerUp.position = spawnposition1;
+                    
+                    PowerUp.position = platform1.position;
                     PowerUp.position += new Vector3(0, 1.38f, 0);
+                    PowerUp.SetParent(platform1);
                 }
                 break;
             case 4:
-                if (counter_To_Spawn_JumpPad % 8 == 0)
+                if (counter_To_Spawn_JumpPad % 4 == 0)
                 {
 
                     //instantiate jump pad
                     Transform JumpPad = Instantiate(GameAssets.Getinstance().Jump_pad);
-                    JumpPad.position = spawnposition2;
+                    
+                    JumpPad.position = platform2.position;
                     JumpPad.position += new Vector3(0, 0.735f, 0);
+                    JumpPad.SetParent(platform2);
                 }
                 break;
             case 5:
-                if (counter_To_Spawn_JumpPad % 8 == 0)
+                if (counter_To_Spawn_JumpPad % 4 == 0)
                 {
 
                     Transform Trap = Instantiate(GameAssets.Getinstance().Trap);
-                    Trap.position = spawnposition2;
+                    
+                    Trap.position = platform2.position;
                     Trap.position += new Vector3(1.54f, 1.5f, 0);
+                    Trap.SetParent(platform2);
                 }
                 break;
             case 6:
-                if (counter_To_Spawn_JumpPad % 8 == 0)
+                if (counter_To_Spawn_JumpPad %4 == 0)
                 {
 
                     Transform PowerUp = Instantiate(GameAssets.Getinstance().PowerUp);
-                    PowerUp.position = spawnposition2;
+                    
+                    PowerUp.position = platform2.position;
                     PowerUp.position += new Vector3(0, 1.38f, 0);
+                    PowerUp.SetParent(platform2);
                 }
                 break;
 
@@ -222,17 +234,17 @@ public class levelgen : MonoBehaviour
     private PlatformEnum GetPlatform()
     {
         
-        if (Counter_for_platforms%20==0)
+        if (Counter_for_platforms%15==0)
             RandomForTypeOfPlatform = Random.Range(0,6);
         
         
             if (RandomForTypeOfPlatform == 1) return PlatformEnum.DissolvingPlatform;
             if (RandomForTypeOfPlatform == 2) return PlatformEnum.woodPlatform;
-            if (RandomForTypeOfPlatform == 3) return PlatformEnum.OutlinePlatformPlatform;
+            if (RandomForTypeOfPlatform == 3) return PlatformEnum.platform;
             if (RandomForTypeOfPlatform == 4) return PlatformEnum.pinkplatform;
             if (RandomForTypeOfPlatform == 5) return PlatformEnum.redplatform; 
 
-         return PlatformEnum.platform;
+         return PlatformEnum.OutlinePlatformPlatform;
         
     }
     private class Platform
