@@ -19,7 +19,7 @@ public class OutlinePlatform : MonoBehaviour
         {
             direction = -1;
         }
-        if (transform.position.x < 2.9f)
+        if (transform.position.x < -8.4f)
         {
             direction = 1;
         }

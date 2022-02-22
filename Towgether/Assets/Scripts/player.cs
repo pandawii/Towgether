@@ -95,7 +95,7 @@ public class player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && isGrounded&&!PoweredUp)
         {
             Vector2 velocity = rb.velocity;
-            velocity.y = JumpForce;
+            velocity.y = JumpForce*1.1f;
             rb.velocity = velocity;
             anim.SetTrigger("Jump");
             
@@ -103,7 +103,7 @@ public class player : MonoBehaviour
          if(Input.GetKeyDown(KeyCode.W) && isGrounded && PoweredUp)
         {
             Vector2 velocity = rb.velocity;
-            velocity.y = JumpForce*1.7f;
+            velocity.y = JumpForce*2f;
             rb.velocity = velocity;
             anim.SetTrigger("Jump");
            

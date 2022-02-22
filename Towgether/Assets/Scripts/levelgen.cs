@@ -42,8 +42,8 @@ public class levelgen : MonoBehaviour
             firstPlatforms.x = Random.Range(-8.200961f, -1.97f);
             firstPlatforms2.x = Random.Range(2.91f, 8.200961f);
 
-            firstPlatforms.y += Random.Range(4f, 7f);
-            firstPlatforms2.y += Random.Range(4f, 7f);
+            firstPlatforms.y += Random.Range(6f, 9f);
+            firstPlatforms2.y += Random.Range(6f, 9f);
             
             Platform platform = new Platform(platform1, platform2);
             PlatformList.Add(platform);
@@ -104,8 +104,8 @@ public class levelgen : MonoBehaviour
         SpawnPosition1.x = Random.Range(-8.5f, -1.75f);
         SpawnPosition2.x = Random.Range(8.5f, 1.76f);
 
-        SpawnPosition1.y += Random.Range(4f, 7f);
-        SpawnPosition2.y += Random.Range(4f, 7f);
+        SpawnPosition1.y += Random.Range(6f, 9f);
+        SpawnPosition2.y += Random.Range(6f, 9f);
 
         startPosition1 = SpawnPosition1;
         startposition2 = SpawnPosition2;
@@ -226,11 +226,11 @@ public class levelgen : MonoBehaviour
             RandomForTypeOfPlatform = Random.Range(0,6);
         
         
-            if (RandomForTypeOfPlatform == 0) return PlatformEnum.DissolvingPlatform;
-            if (RandomForTypeOfPlatform == 1) return PlatformEnum.woodPlatform;
-            if (RandomForTypeOfPlatform == 2) return PlatformEnum.OutlinePlatformPlatform;
-            if (RandomForTypeOfPlatform == 3) return PlatformEnum.pinkplatform;
-            if (RandomForTypeOfPlatform == 4) return PlatformEnum.redplatform; 
+            if (RandomForTypeOfPlatform == 1) return PlatformEnum.DissolvingPlatform;
+            if (RandomForTypeOfPlatform == 2) return PlatformEnum.woodPlatform;
+            if (RandomForTypeOfPlatform == 3) return PlatformEnum.OutlinePlatformPlatform;
+            if (RandomForTypeOfPlatform == 4) return PlatformEnum.pinkplatform;
+            if (RandomForTypeOfPlatform == 5) return PlatformEnum.redplatform; 
 
          return PlatformEnum.platform;
         
