@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class levelgen : MonoBehaviour
 {
-    Vector3 startPosition1 = new Vector3(0f, 165f, 0f);
-    Vector3 startposition2 = new Vector3(0f, 165f, 0f);
+    Vector3 startPosition1 = new Vector3(0f, 220f, 0f);
+    Vector3 startposition2 = new Vector3(0f, 220f, 0f);
 
     Vector3 firstPlatforms=new Vector3(0,-1,0);
     Vector3 firstPlatforms2 = new Vector3(0, -1, 0);
@@ -222,7 +222,7 @@ public class levelgen : MonoBehaviour
     private PlatformEnum GetPlatform()
     {
         
-        if (Counter_for_platforms%30==0)
+        if (Counter_for_platforms%20==0)
             RandomForTypeOfPlatform = Random.Range(0,6);
         
         
