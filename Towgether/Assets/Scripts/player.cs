@@ -91,7 +91,15 @@ public class player : MonoBehaviour
     }
     void Jumping()
     {
-        
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded && PoweredUp)
+        {
+            Vector2 velocity = rb.velocity;
+            velocity.y = JumpForce * 2f;
+            rb.velocity = velocity;
+            anim.SetTrigger("Jump");
+
+            Dust.Play();
+        }
         if (Input.GetKeyDown(KeyCode.W) && isGrounded&&!PoweredUp)
         {
             Vector2 velocity = rb.velocity;
@@ -100,15 +108,7 @@ public class player : MonoBehaviour
             anim.SetTrigger("Jump");
             
         }
-         if(Input.GetKeyDown(KeyCode.W) && isGrounded && PoweredUp)
-        {
-            Vector2 velocity = rb.velocity;
-            velocity.y = JumpForce*2f;
-            rb.velocity = velocity;
-            anim.SetTrigger("Jump");
-           
-            Dust.Play();
-        }
+        
         
     }
     void Handlingflip()
@@ -136,8 +136,9 @@ public class player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Arrow"))
         {
-            PoweredUp = true;
             timerForPowerUp = timerForPowerUpMax;
+            PoweredUp = true;
+            
         }
         if (timerForPowerUp <= 0)
         {
