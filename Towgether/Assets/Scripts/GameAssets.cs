@@ -27,4 +27,17 @@ public class GameAssets : MonoBehaviour
     public Transform Trap;
     public Transform Explosion;
     public Transform PowerUp;
+
+    [Header("Sound")]
+    public SoundAudioCLip[] SoundAudioArray;
+
+    [System.Serializable]
+    public class SoundAudioCLip {
+
+        public SoundManager.Sound sound;
+        public AudioClip audioclip;
+    
+    }
+
+
 }

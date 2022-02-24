@@ -11,8 +11,8 @@ public class Arrow : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {          
             Destroy(gameObject);
-            Instantiate(GameAssets.Getinstance().Explosion, gameObject.transform.position, Quaternion.identity);
-            
+           Instantiate(GameAssets.Getinstance().Explosion, gameObject.transform.position, Quaternion.identity);
+
         }
     }
 

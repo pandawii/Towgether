@@ -25,7 +25,7 @@ public class player : MonoBehaviour
 
     float timerForPowerUp;
     float timerForPowerUpMax;
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -38,7 +38,9 @@ public class player : MonoBehaviour
         PoweredUp = false;
         timerForPowerUpMax = 5f;
         timerForPowerUp = 5f;
+        SoundManager.initialize();
     }
+    
 
     
     void Update()
@@ -91,14 +93,17 @@ public class player : MonoBehaviour
     }
     void Jumping()
     {
+        
         if (Input.GetKeyDown(KeyCode.W) && isGrounded && PoweredUp)
         {
             Vector2 velocity = rb.velocity;
             velocity.y = JumpForce * 2f;
             rb.velocity = velocity;
             anim.SetTrigger("Jump");
-
+            
             Dust.Play();
+            SoundManager.PlaySound(SoundManager.Sound.Jump);
+
         }
         if (Input.GetKeyDown(KeyCode.W) && isGrounded&&!PoweredUp)
         {
@@ -106,7 +111,7 @@ public class player : MonoBehaviour
             velocity.y = JumpForce*1.1f;
             rb.velocity = velocity;
             anim.SetTrigger("Jump");
-            
+            SoundManager.PlaySound(SoundManager.Sound.Jump);
         }
         
         
@@ -134,11 +139,12 @@ public class player : MonoBehaviour
     bool PoweredUp;
     void OnCollisionEnter2D(Collision2D col)
     {
+        
         if (col.gameObject.CompareTag("Arrow"))
         {
             timerForPowerUp = timerForPowerUpMax;
             PoweredUp = true;
-            
+            SoundManager.PlaySound(SoundManager.Sound.PowerUp);
         }
         if (timerForPowerUp <= 0)
         {
