@@ -48,30 +48,35 @@ public class camera : MonoBehaviour
         switch (diffculty)
         {
             case Diffculty.easy:
+                Debug.Log("1");
             transform.position += new Vector3(0, 3.4f, 0) * Time.deltaTime;
                
             break;
 
             case Diffculty.medium:
-            transform.position += new Vector3(0,4.5f, 0) * Time.deltaTime;
+                Debug.Log("2");
+                transform.position += new Vector3(0,4.5f, 0) * Time.deltaTime;
                 
                 break;
 
             case Diffculty.hard:
-            transform.position += new Vector3(0, 5.3f, 0) * Time.deltaTime;
+                Debug.Log("3");
+                transform.position += new Vector3(0, 5.3f, 0) * Time.deltaTime;
                
                 break;
 
             case Diffculty.impossible:
-            transform.position += new Vector3(0, 5.5f, 0) * Time.deltaTime;
+                Debug.Log("4");
+                transform.position += new Vector3(0, 5.5f, 0) * Time.deltaTime;
              
                 break;
         }
     }
     private Diffculty GetDiffculty()
-    {               
-            if (timer >= 60) return Diffculty.impossible;
-            if (timer >= 40) return Diffculty.hard;
+    {
+        if (timer >= 80) timer = 0;
+            if (timer >= 40) return Diffculty.impossible;
+            if (timer >= 30) return Diffculty.hard;
             if (timer >= 20) return Diffculty.medium;
             return Diffculty.easy;       
     }
