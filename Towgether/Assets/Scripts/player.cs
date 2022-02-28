@@ -25,15 +25,17 @@ public class player : MonoBehaviour
 
     float timerForPowerUp;
     float timerForPowerUpMax;
+    bool IncreaseBoost ;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
-        BoostCapacityMax = 1;
+        BoostCapacityMax = 1f;
         BoostCapacity += BoostCapacityMax;
-        BoostCapacityCooldown = 7f;
-        BoostCapacityCooldownMax = 7f;
+        BoostCapacityCooldown = 5f;
+        BoostCapacityCooldownMax = 5f;
+        IncreaseBoost = false;
         boostScript.SetMaxBoost(BoostCapacityMax);
         PoweredUp = false;
         timerForPowerUpMax = 5f;
@@ -68,30 +70,61 @@ public class player : MonoBehaviour
    void HandleBoostUsage()
     {
 
-        if (Input.GetMouseButton(0) && BoostCapacity > 0)
+        if (Input.GetMouseButton(0) && BoostCapacity > 0&&BoostCapacityCooldown>0&&!IncreaseBoost)
         {
-            rb.AddForce(Vector2.up * 100f*Time.deltaTime, ForceMode2D.Impulse);
-            BoostCapacity -= Time.deltaTime;
-            Dust.Play();
+         rb.AddForce(Vector2.up* 100f*Time.deltaTime, ForceMode2D.Impulse);
+         BoostCapacity -= Time.deltaTime;
+         Dust.Play();
         }
-        else if (Input.GetMouseButtonUp(0)){
+        else if (Input.GetMouseButtonUp(0))
+        {
             Dust.Stop();
         }
         if (BoostCapacity < BoostCapacityMax || BoostCapacity <= 0)
         {
             BoostCapacityCooldown -= Time.deltaTime;
-           
+
         }
         if (BoostCapacityCooldown <= 0)
         {
-            BoostCapacity = BoostCapacityMax;
+            IncreaseBoost = true;
+            
             BoostCapacityCooldown = BoostCapacityCooldownMax;
         }
+        if (IncreaseBoost)
+        {
+            BoostCapacity +=Time.deltaTime;
+        }
+        if (BoostCapacity >= 1f)
+        {
+            IncreaseBoost = false;
 
-            
+        }
+        Debug.Log(BoostCapacity);
+        Debug.Log(BoostCapacityCooldown);
         boostScript.setboost(BoostCapacity);
     }
-    void Jumping()
+//    if (Input.GetMouseButton(0) && BoostCapacity > 0)
+//        {
+//            rb.AddForce(Vector2.up* 100f*Time.deltaTime, ForceMode2D.Impulse);
+//            BoostCapacity -= Time.deltaTime;
+//            Dust.Play();
+//        }
+//        else if (Input.GetMouseButtonUp(0))
+//{
+//    Dust.Stop();
+//}
+//if (BoostCapacity < BoostCapacityMax || BoostCapacity <= 0)
+//{
+//    BoostCapacityCooldown -= Time.deltaTime;
+
+//}
+//if (BoostCapacityCooldown <= 0)
+//{
+//    BoostCapacity += Time.deltaTime;
+//    BoostCapacityCooldown = BoostCapacityCooldownMax;
+//}
+void Jumping()
     {
         
         if (Input.GetKeyDown(KeyCode.W) && isGrounded && PoweredUp)
@@ -142,14 +175,14 @@ public class player : MonoBehaviour
         
         if (col.gameObject.CompareTag("Arrow"))
         {
+            Debug.Log("player"); 
             timerForPowerUp = timerForPowerUpMax;
             PoweredUp = true;
             SoundManager.PlaySound(SoundManager.Sound.PowerUp);
         }
         if (timerForPowerUp <= 0)
         {
-            PoweredUp = false;
-            
+            PoweredUp = false;            
         }
         
     }
