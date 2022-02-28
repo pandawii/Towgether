@@ -15,7 +15,6 @@ public class player : MonoBehaviour
     [SerializeField]LayerMask WhatIsGround;
     float CheckRaidus = 0.5f;   
     bool isGrounded;
-
     float BoostCapacity;
     float BoostCapacityMax;
     float BoostCapacityCooldown;
@@ -100,8 +99,7 @@ public class player : MonoBehaviour
             IncreaseBoost = false;
 
         }
-        Debug.Log(BoostCapacity);
-        Debug.Log(BoostCapacityCooldown);
+        
         boostScript.setboost(BoostCapacity);
     }
 //    if (Input.GetMouseButton(0) && BoostCapacity > 0)
