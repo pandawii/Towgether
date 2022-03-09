@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class levelgen : MonoBehaviour
 {
-    Vector3 startPosition1 = new Vector3(0f, 220f, 0f);
-    Vector3 startposition2 = new Vector3(0f, 220f, 0f);
+    Vector3 startPosition1 = new Vector3(0f, 75f, 0f);
+    Vector3 startposition2 = new Vector3(0f, 75f, 0f);
 
     Vector3 firstPlatforms=new Vector3(0,-1,0);
     Vector3 firstPlatforms2 = new Vector3(0, -1, 0);
@@ -34,16 +34,16 @@ public class levelgen : MonoBehaviour
     private void Start()
     {
         
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 10; i++)
         {
             Transform platform1 = Instantiate(GameAssets.Getinstance().platform, firstPlatforms, Quaternion.identity);
             Transform platform2 = Instantiate(GameAssets.Getinstance().platform, firstPlatforms2, Quaternion.identity);
 
             firstPlatforms.x = Random.Range(-8.200961f, -1.97f);
-            firstPlatforms2.x = Random.Range(2.91f, 8.200961f);
+            firstPlatforms2.x = Random.Range(2.43f, 8.200961f);
 
             firstPlatforms.y += Random.Range(6f, 9f);
-            firstPlatforms2.y += Random.Range(6f, 9f);
+            firstPlatforms2.y = firstPlatforms.y;
             
             Platform platform = new Platform(platform1, platform2);
             PlatformList.Add(platform);
@@ -105,7 +105,7 @@ public class levelgen : MonoBehaviour
         SpawnPosition2.x = Random.Range(8.5f, 1.76f);
 
         SpawnPosition1.y += Random.Range(6f, 9f);
-        SpawnPosition2.y += Random.Range(6f, 9f);
+        SpawnPosition2.y = SpawnPosition1.y;
 
         startPosition1 = SpawnPosition1;
         startposition2 = SpawnPosition2;
