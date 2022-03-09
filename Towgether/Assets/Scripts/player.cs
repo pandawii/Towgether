@@ -4,32 +4,43 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    [SerializeField] ParticleSystem Dust;
-   public float movementSpeed = 8.9f;
-    float movement = 0f;
+    ParticleSystem Dust;
     Rigidbody2D rb;
-    public float JumpForce = 20f;
     Animator anim;
     SpriteRenderer sp;
+    
+     
+    
+    [Header("Boost")]
+    [SerializeField] float BoostCapacity;
+    [SerializeField] float BoostCapacityMax;
+    [SerializeField] float BoostCapacityCooldown;
+    [SerializeField] float BoostCapacityCooldownMax;
+    [SerializeField] bool IncreaseBoost;
+    [SerializeField] BoostBar boostScript;
+
+    [Header("GroundCheck")]
     [SerializeField] Transform GroundCheckPosition;
-    [SerializeField]LayerMask WhatIsGround;
-    float CheckRaidus = 0.5f;   
-    bool isGrounded;
-    float BoostCapacity;
-    float BoostCapacityMax;
-    float BoostCapacityCooldown;
-    float BoostCapacityCooldownMax;
+    [SerializeField] LayerMask WhatIsGround;
+    [SerializeField] float CheckRaidus = 1f;
+    [SerializeField] bool isGrounded;
 
-    public BoostBar boostScript;
+    [Header("GroundCheck")]
+    [SerializeField] float JumpForce = 40.3f;
+    [SerializeField] float movementSpeed = 16.8f;
+    [SerializeField] float movement = 0f;
 
-    float timerForPowerUp;
-    float timerForPowerUpMax;
-    bool IncreaseBoost ;
+    [Header("PowerUp")]
+    [SerializeField] float timerForPowerUp;
+    [SerializeField] float timerForPowerUpMax;
+    
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
+        Dust = GetComponentInChildren<ParticleSystem>();
         BoostCapacityMax = 1f;
         BoostCapacity += BoostCapacityMax;
         BoostCapacityCooldown = 5f;
@@ -38,7 +49,6 @@ public class player : MonoBehaviour
         boostScript.SetMaxBoost(BoostCapacityMax);
         PoweredUp = false;
         timerForPowerUpMax = 5f;
-        timerForPowerUp = 5f;
         SoundManager.initialize();
     }
     
@@ -62,6 +72,11 @@ public class player : MonoBehaviour
         if (PoweredUp)
         {
             timerForPowerUp -= Time.deltaTime;
+        }
+        if (timerForPowerUp <= 0)
+        {
+            timerForPowerUp = 0f;
+            PoweredUp = false;
         }
 
 
@@ -102,27 +117,8 @@ public class player : MonoBehaviour
         
         boostScript.setboost(BoostCapacity);
     }
-//    if (Input.GetMouseButton(0) && BoostCapacity > 0)
-//        {
-//            rb.AddForce(Vector2.up* 100f*Time.deltaTime, ForceMode2D.Impulse);
-//            BoostCapacity -= Time.deltaTime;
-//            Dust.Play();
-//        }
-//        else if (Input.GetMouseButtonUp(0))
-//{
-//    Dust.Stop();
-//}
-//if (BoostCapacity < BoostCapacityMax || BoostCapacity <= 0)
-//{
-//    BoostCapacityCooldown -= Time.deltaTime;
 
-//}
-//if (BoostCapacityCooldown <= 0)
-//{
-//    BoostCapacity += Time.deltaTime;
-//    BoostCapacityCooldown = BoostCapacityCooldownMax;
-//}
-void Jumping()
+    void Jumping()
     {
         
         if (Input.GetKeyDown(KeyCode.W) && isGrounded && PoweredUp)
@@ -173,15 +169,14 @@ void Jumping()
         
         if (col.gameObject.CompareTag("Arrow"))
         {
-            Debug.Log("player"); 
-            timerForPowerUp = timerForPowerUpMax;
             PoweredUp = true;
+            if (PoweredUp)
+            {
+                timerForPowerUp += timerForPowerUpMax;
+            }
             SoundManager.PlaySound(SoundManager.Sound.PowerUp);
         }
-        if (timerForPowerUp <= 0)
-        {
-            PoweredUp = false;            
-        }
+       
         
     }
 

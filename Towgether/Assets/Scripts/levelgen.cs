@@ -152,7 +152,7 @@ public class levelgen : MonoBehaviour
                     Transform PowerUp = Instantiate(GameAssets.Getinstance().PowerUp);
                     
                     PowerUp.position = platform1.position;
-                    PowerUp.position += new Vector3(0, 1.38f, 0);
+                    PowerUp.position += new Vector3(0, 1.60f, 0);
                     PowerUp.SetParent(platform1);
                 }
                 break;
@@ -186,7 +186,7 @@ public class levelgen : MonoBehaviour
                     Transform PowerUp = Instantiate(GameAssets.Getinstance().PowerUp);
                     
                     PowerUp.position = platform2.position;
-                    PowerUp.position += new Vector3(0, 1.38f, 0);
+                    PowerUp.position += new Vector3(0, 1.60f, 0);
                     PowerUp.SetParent(platform2);
                 }
                 break;

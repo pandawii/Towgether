@@ -5,11 +5,11 @@ using UnityEngine;
 public class camera : MonoBehaviour
 {
     public Transform Target;
-    public float SmoothSpeed = .3f;
+    float SmoothSpeed = .3f;
     Vector3 currentvelocity;
     bool playerStartedPlaying;
     [SerializeField] Transform player;
-   [SerializeField] Transform Position_For_Camera_To_start_Moving;
+    [SerializeField] Transform Position_For_Camera_To_start_Moving;
     public enum Diffculty{ easy,medium,hard,impossible}
     float timer;
     int randomCameraGenerator;
@@ -52,7 +52,7 @@ public class camera : MonoBehaviour
         {
             case Diffculty.easy:
                
-            transform.position += new Vector3(0,4f, 0) * Time.deltaTime;
+            transform.position += new Vector3(0,5f, 0) * Time.deltaTime;
                 timer -= Time.deltaTime;
                 if (timer <= 0)
                 {
@@ -64,7 +64,7 @@ public class camera : MonoBehaviour
 
             case Diffculty.medium:
               
-                transform.position += new Vector3(0,5f, 0) * Time.deltaTime;
+                transform.position += new Vector3(0,5.5f, 0) * Time.deltaTime;
                 timer -= Time.deltaTime;
                 if (timer <= 0)
                 {
@@ -76,7 +76,7 @@ public class camera : MonoBehaviour
 
             case Diffculty.hard:
                 
-                transform.position += new Vector3(0, 5.5f, 0) * Time.deltaTime;
+                transform.position += new Vector3(0, 6f, 0) * Time.deltaTime;
                 timer -= Time.deltaTime;
                 if (timer <= 0)
                 {

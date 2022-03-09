@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PinkPlatform : MonoBehaviour
 {
-  [SerializeField]  float Jumpforce = 10f;
+    float Jumpforce = 50f;
 
    
    

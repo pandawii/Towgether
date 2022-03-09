@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2629987700137832313}
   - component: {fileID: 2118003719163081514}
-  - component: {fileID: 779376997326005313}
   - component: {fileID: 1881731731801488762}
   - component: {fileID: 3658837416997771104}
   - component: {fileID: 1152102629460619066}
@@ -86,27 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &779376997326005313
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5263112839655522949}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 91fc9afea36fd424c89270222a83862d, type: 2}
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
 --- !u!251 &1881731731801488762
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -122,7 +100,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 197.8
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -142,8 +120,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.9248166, y: 0.19721508}
-  - {x: 1.906471, y: 0.19721508}
+  - {x: -1.8000212, y: 0.19721508}
+  - {x: 1.706547, y: 0.19721508}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
