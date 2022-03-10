@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class camera : MonoBehaviour
 {
-    public Transform Target;
+    
     float SmoothSpeed = .3f;
     Vector3 currentvelocity;
     bool playerStartedPlaying;
     [SerializeField] Transform player;
     [SerializeField] Transform Position_For_Camera_To_start_Moving;
+    [SerializeField] Transform positionTODelete;
     public enum Diffculty{ easy,medium,hard,impossible}
     float timer;
     int randomCameraGenerator;
@@ -25,6 +27,11 @@ public class camera : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
+        if (player.transform.position.y < positionTODelete.position.y)
+        {
+            SceneManager.LoadScene("base");
+
+        }
     }
     void LateUpdate()
     {
@@ -34,9 +41,9 @@ public class camera : MonoBehaviour
         if(playerStartedPlaying)
             setDiffculty(Diffculty.easy);
 
-        if (Target.position.y > transform.position.y)
+        if (player.position.y > transform.position.y)
            {
-             Vector3 newPos = new Vector3(transform.position.x, Target.position.y, transform.position.z);
+             Vector3 newPos = new Vector3(transform.position.x, player.position.y, transform.position.z);
              transform.position = Vector3.SmoothDamp(transform.position, newPos, ref currentvelocity, SmoothSpeed * Time.deltaTime);
 
            }
@@ -58,7 +65,7 @@ public class camera : MonoBehaviour
                 {
                     randomCameraGenerator = Random.Range(1, 5);
                     timer += timerMax;
-                    Debug.Log("1");
+                   
                 }
             break;
 
@@ -70,7 +77,7 @@ public class camera : MonoBehaviour
                 {
                     randomCameraGenerator = Random.Range(1, 5);
                     timer += timerMax;
-                    Debug.Log("2");
+                 
                 }
                 break;
 
@@ -80,7 +87,7 @@ public class camera : MonoBehaviour
                 timer -= Time.deltaTime;
                 if (timer <= 0)
                 {
-                    Debug.Log("3");
+                   
                     randomCameraGenerator = Random.Range(1, 5);
                     timer += timerMax;
                 }
@@ -94,7 +101,7 @@ public class camera : MonoBehaviour
                 {
                     randomCameraGenerator = Random.Range(1, 5);
                     timer += timerMax;
-                    Debug.Log("4");
+                   
                 }
                 break;
         }

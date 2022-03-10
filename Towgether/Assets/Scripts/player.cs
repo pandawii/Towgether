@@ -47,7 +47,6 @@ public class player : MonoBehaviour
         BoostCapacityCooldownMax = 5f;
         IncreaseBoost = false;
         boostScript.SetMaxBoost(BoostCapacityMax);
-        PoweredUp = false;
         timerForPowerUpMax = 5f;
         SoundManager.initialize();
     }
@@ -69,14 +68,13 @@ public class player : MonoBehaviour
        
 
         HandleBoostUsage();
-        if (PoweredUp)
+        if (timerForPowerUp > 0)
         {
             timerForPowerUp -= Time.deltaTime;
         }
         if (timerForPowerUp <= 0)
         {
             timerForPowerUp = 0f;
-            PoweredUp = false;
         }
 
 
@@ -121,7 +119,7 @@ public class player : MonoBehaviour
     void Jumping()
     {
         
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded && PoweredUp)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded && timerForPowerUp>0)
         {
             Vector2 velocity = rb.velocity;
             velocity.y = JumpForce * 2f;
@@ -132,7 +130,7 @@ public class player : MonoBehaviour
             SoundManager.PlaySound(SoundManager.Sound.Jump);
 
         }
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded&&!PoweredUp)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded&& timerForPowerUp <= 0)
         {
             Vector2 velocity = rb.velocity;
             velocity.y = JumpForce*1.1f;
@@ -163,23 +161,18 @@ public class player : MonoBehaviour
         sp.flipX = IsLookingLeft;
        
     }
-    bool PoweredUp;
-    void OnCollisionEnter2D(Collision2D col)
+
+
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        
         if (col.gameObject.CompareTag("Arrow"))
         {
-            PoweredUp = true;
-            if (PoweredUp)
-            {
-                timerForPowerUp += timerForPowerUpMax;
-            }
+            Debug.Log("player");
+
+            timerForPowerUp += timerForPowerUpMax;
+
             SoundManager.PlaySound(SoundManager.Sound.PowerUp);
         }
-       
-        
     }
-
-
 
 }

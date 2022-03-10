@@ -269,10 +269,10 @@ RectTransform:
   m_Father: {fileID: 1260683089}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 357, y: -592}
-  m_SizeDelta: {x: 81.079, y: 81.079}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -40.539505, y: 40.53949}
+  m_SizeDelta: {x: 81.07901, y: 81.07898}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &610867481
 MonoBehaviour:
@@ -819,7 +819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621299307}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -74.4, z: 0}
+  m_LocalPosition: {x: 0, y: -62.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2040804405}
@@ -6084,9 +6084,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78f9f2a315024e40abc150cf1d87f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 1687573451}
   player: {fileID: 1687573451}
   Position_For_Camera_To_start_Moving: {fileID: 378521817}
+  positionTODelete: {fileID: 1621299308}
 --- !u!1001 &2547824075312281961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6151,10 +6151,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1210556988, guid: 829b50b1ed9f23147a8a5c9f4b5c0f12, type: 3}
-      propertyPath: m_SurfaceArc
-      value: 138.04
-      objectReference: {fileID: 0}
     - target: {fileID: 4744342172782079591, guid: 829b50b1ed9f23147a8a5c9f4b5c0f12, type: 3}
       propertyPath: m_Name
       value: arrow

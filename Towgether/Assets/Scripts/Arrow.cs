@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    
 
-     void OnCollisionEnter2D(Collision2D col)
+
+    
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        
-        
-            Debug.Log("Arrow");
-            Destroy(gameObject);
-            Instantiate(GameAssets.Getinstance().Explosion, gameObject.transform.position, Quaternion.identity);           
-        
+
+        Debug.Log("Arrow");
+        Destroy(gameObject);
+        Instantiate(GameAssets.Getinstance().Explosion, gameObject.transform.position, Quaternion.identity);
     }
 
 }
