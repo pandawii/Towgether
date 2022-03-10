@@ -25,7 +25,7 @@ public class levelgen : MonoBehaviour
     private void Awake()
     {
         PlatformList = new List<Platform>();
-        maxTimer = 0.24f;
+        maxTimer = 0.18f;
         GameStarted = false;
         Counter_for_platforms = 0;
         RandomForTypeOfPlatform = 0;
@@ -123,7 +123,7 @@ public class levelgen : MonoBehaviour
         switch (random_num_to_spawn_ToChoose_jumppad)
         {
             case 1:
-                if (counter_To_Spawn_JumpPad % 8 == 0)
+                if (counter_To_Spawn_JumpPad % 9 == 0)
                 {
                    
                     //instantiate jump pad
@@ -135,7 +135,7 @@ public class levelgen : MonoBehaviour
                 }
                 break;
             case 2:
-                if (counter_To_Spawn_JumpPad % 5 == 0)
+                if (counter_To_Spawn_JumpPad % 9 == 0)
                 {
 
                     Transform Trap = Instantiate(GameAssets.Getinstance().Trap);
@@ -146,7 +146,7 @@ public class levelgen : MonoBehaviour
                 }
                 break;
             case 3:
-                if (counter_To_Spawn_JumpPad % 4 == 0)
+                if (counter_To_Spawn_JumpPad % 9 == 0)
                 {
 
                     Transform PowerUp = Instantiate(GameAssets.Getinstance().PowerUp);
@@ -157,7 +157,7 @@ public class levelgen : MonoBehaviour
                 }
                 break;
             case 4:
-                if (counter_To_Spawn_JumpPad % 4 == 0)
+                if (counter_To_Spawn_JumpPad % 8 == 0)
                 {
 
                     //instantiate jump pad
@@ -169,7 +169,7 @@ public class levelgen : MonoBehaviour
                 }
                 break;
             case 5:
-                if (counter_To_Spawn_JumpPad % 4 == 0)
+                if (counter_To_Spawn_JumpPad % 8 == 0)
                 {
 
                     Transform Trap = Instantiate(GameAssets.Getinstance().Trap);
@@ -180,7 +180,7 @@ public class levelgen : MonoBehaviour
                 }
                 break;
             case 6:
-                if (counter_To_Spawn_JumpPad %4 == 0)
+                if (counter_To_Spawn_JumpPad %8== 0)
                 {
 
                     Transform PowerUp = Instantiate(GameAssets.Getinstance().PowerUp);

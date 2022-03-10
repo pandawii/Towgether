@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    ParticleSystem Dust;
+    [SerializeField] ParticleSystem Dust;
+    [SerializeField] ParticleSystem Dust2;
+    
     Rigidbody2D rb;
     Animator anim;
     SpriteRenderer sp;
@@ -25,22 +27,22 @@ public class player : MonoBehaviour
     [SerializeField] float CheckRaidus = 1f;
     [SerializeField] bool isGrounded;
 
-    [Header("GroundCheck")]
-    [SerializeField] float JumpForce = 40.3f;
+    [Header("jumping")]
     [SerializeField] float movementSpeed = 16.8f;
     [SerializeField] float movement = 0f;
+    [SerializeField] float jumpforce = 30f;
+    [SerializeField] bool Jumprequest;
 
     [Header("PowerUp")]
     [SerializeField] float timerForPowerUp;
     [SerializeField] float timerForPowerUpMax;
-    
-    
+
     private void Awake()
     {
+        
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        sp = GetComponent<SpriteRenderer>();
-        Dust = GetComponentInChildren<ParticleSystem>();
+        sp = GetComponent<SpriteRenderer>();       
         BoostCapacityMax = 1f;
         BoostCapacity += BoostCapacityMax;
         BoostCapacityCooldown = 5f;
@@ -51,7 +53,7 @@ public class player : MonoBehaviour
         SoundManager.initialize();
     }
     
-
+   
     
     void Update()
     {
@@ -61,30 +63,31 @@ public class player : MonoBehaviour
         movement = Input.GetAxis("Horizontal")* movementSpeed;
         Handlingflip();
 
-        Jumping();
+       
         rb.velocity = new Vector2( movement, rb.velocity.y);
         anim.SetFloat("Speed", Mathf.Abs(movement));
-       
-       
 
+
+        HandleJump();
         HandleBoostUsage();
-        if (timerForPowerUp > 0)
-        {
-            timerForPowerUp -= Time.deltaTime;
-        }
-        if (timerForPowerUp <= 0)
-        {
-            timerForPowerUp = 0f;
-        }
+        timeForPowerUpHandler();
+
 
 
     }
-   void HandleBoostUsage()
+     void FixedUpdate()
+    {
+        BetterJumpFeel();
+    }
+    public float fallmutliplier = 2.5f;
+    public float lowJumpMutliplier = 2f;
+
+    void HandleBoostUsage()
     {
 
         if (Input.GetMouseButton(0) && BoostCapacity > 0&&BoostCapacityCooldown>0&&!IncreaseBoost)
         {
-         rb.AddForce(Vector2.up* 100f*Time.deltaTime, ForceMode2D.Impulse);
+         rb.AddForce(Vector2.up* 90f*Time.deltaTime, ForceMode2D.Impulse);
          BoostCapacity -= Time.deltaTime;
          Dust.Play();
         }
@@ -115,31 +118,71 @@ public class player : MonoBehaviour
         
         boostScript.setboost(BoostCapacity);
     }
-
-    void Jumping()
+    void HandleJump()
     {
-        
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded && timerForPowerUp>0)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded && timerForPowerUp > 0)
         {
-            Vector2 velocity = rb.velocity;
-            velocity.y = JumpForce * 2f;
-            rb.velocity = velocity;
+            Jumprequest = true;
             anim.SetTrigger("Jump");
-            
-            Dust.Play();
-            SoundManager.PlaySound(SoundManager.Sound.Jump);
+            Dust2.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded && timerForPowerUp > 0&& Input.GetMouseButtonDown(0))
+        {
+            Jumprequest = true;
+            anim.SetTrigger("Jump");           
+            Dust2.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded && timerForPowerUp <= 0)
+        {
+            Jumprequest = true;
+            anim.SetTrigger("Jump");
 
         }
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded&& timerForPowerUp <= 0)
+    }
+    void BetterJumpFeel()
+    {
+
+        if (Jumprequest && timerForPowerUp > 0 && Input.GetMouseButtonDown(0))
         {
-            Vector2 velocity = rb.velocity;
-            velocity.y = JumpForce*1.1f;
-            rb.velocity = velocity;
-            anim.SetTrigger("Jump");
-            SoundManager.PlaySound(SoundManager.Sound.Jump);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 2.5f, ForceMode2D.Impulse);
+
+            Jumprequest = false;
         }
-        
-        
+        if (Jumprequest && timerForPowerUp > 0)
+        {
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 1.8f, ForceMode2D.Impulse);
+
+            Jumprequest = false;
+        }
+        if (Jumprequest && timerForPowerUp <= 0)
+        {
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+            Jumprequest = false;
+        }
+
+        if (rb.velocity.y < 0)
+        {
+            rb.gravityScale = fallmutliplier;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.W))
+        {
+            rb.gravityScale = lowJumpMutliplier;
+        }
+        else
+        {
+            rb.gravityScale = 9f;
+        }
+    }
+    void timeForPowerUpHandler()
+    {
+        if (timerForPowerUp > 0)
+        {
+            timerForPowerUp -= Time.deltaTime;
+        }
+        if (timerForPowerUp <= 0)
+        {
+            timerForPowerUp = 0f;
+        }
     }
     void Handlingflip()
     {
