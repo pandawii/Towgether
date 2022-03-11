@@ -25,7 +25,7 @@ public class levelgen : MonoBehaviour
     private void Awake()
     {
         PlatformList = new List<Platform>();
-        maxTimer = 0.18f;
+        maxTimer = 0.15f;
         GameStarted = false;
         Counter_for_platforms = 0;
         RandomForTypeOfPlatform = 0;

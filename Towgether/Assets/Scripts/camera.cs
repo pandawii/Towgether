@@ -12,6 +12,7 @@ public class camera : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] Transform Position_For_Camera_To_start_Moving;
     [SerializeField] Transform positionTODelete;
+    [SerializeField] Transform positionTORestart;
     public enum Diffculty{ easy,medium,hard,impossible}
     float timer;
    
@@ -27,7 +28,7 @@ public class camera : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        if (player.transform.position.y < positionTODelete.position.y)
+        if (player.transform.position.y < positionTORestart.position.y)
         {
             SceneManager.LoadScene("base");
 
