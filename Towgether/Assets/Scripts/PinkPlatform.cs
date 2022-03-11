@@ -18,6 +18,7 @@ public class PinkPlatform : MonoBehaviour
                 Vector2 velocity = rb.velocity;
                 velocity.y = Jumpforce;
                 rb.velocity = velocity;
+                SoundManager.PlaySound(SoundManager.Sound.Jump);
             }
           
 

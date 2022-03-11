@@ -14,7 +14,7 @@ public class levelgen : MonoBehaviour
     List<Platform> PlatformList;
     bool GameStarted;
     [SerializeField] private Transform PositionToDelete;
-
+    [SerializeField] Transform player;
     int counter_To_Spawn_JumpPad;
     int random_num_to_spawn_ToChoose_jumppad;
 
@@ -78,7 +78,7 @@ public class levelgen : MonoBehaviour
     }
     void SpawnTimer()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (player.position.y>15f)
         {
             GameStarted = true;
         }

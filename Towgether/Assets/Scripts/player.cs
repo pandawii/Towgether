@@ -120,21 +120,22 @@ public class player : MonoBehaviour
     }
     void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded && timerForPowerUp > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && timerForPowerUp > 0)
         {
             Jumprequest = true;
             anim.SetTrigger("Jump");
             Dust2.Play();
-            
+            SoundManager.PlaySound(SoundManager.Sound.Jump);
         }
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded && timerForPowerUp > 0&& Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && timerForPowerUp > 0&& Input.GetMouseButtonDown(0))
         {
             Jumprequest = true;
             anim.SetTrigger("Jump");           
             Dust2.Play();
-            
+            Dust.Play();
+            SoundManager.PlaySound(SoundManager.Sound.Jump);
         }
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded && timerForPowerUp <= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && timerForPowerUp <= 0)
         {
             Jumprequest = true;
             anim.SetTrigger("Jump");
@@ -146,13 +147,13 @@ public class player : MonoBehaviour
 
         if (Jumprequest && timerForPowerUp > 0 && Input.GetMouseButtonDown(0))
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 2.5f, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 5f, ForceMode2D.Impulse);
 
             Jumprequest = false;
         }
         if (Jumprequest && timerForPowerUp > 0)
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 1.8f, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 2.2f, ForceMode2D.Impulse);
 
             Jumprequest = false;
         }
@@ -166,7 +167,7 @@ public class player : MonoBehaviour
         {
             rb.gravityScale = fallmutliplier;
         }
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.W))
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
         {
             rb.gravityScale = lowJumpMutliplier;
         }

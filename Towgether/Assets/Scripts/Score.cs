@@ -25,6 +25,6 @@ public class Score : MonoBehaviour
         {
             AddScore();
         }
-        score.text = scorenum.ToString("0");
+        score.text = scorenum.ToString("0m").Normalize();
     }
 }
