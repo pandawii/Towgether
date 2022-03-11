@@ -125,18 +125,20 @@ public class player : MonoBehaviour
             Jumprequest = true;
             anim.SetTrigger("Jump");
             Dust2.Play();
+            
         }
         if (Input.GetKeyDown(KeyCode.W) && isGrounded && timerForPowerUp > 0&& Input.GetMouseButtonDown(0))
         {
             Jumprequest = true;
             anim.SetTrigger("Jump");           
             Dust2.Play();
+            
         }
         if (Input.GetKeyDown(KeyCode.W) && isGrounded && timerForPowerUp <= 0)
         {
             Jumprequest = true;
             anim.SetTrigger("Jump");
-
+            SoundManager.PlaySound(SoundManager.Sound.Jump);
         }
     }
     void BetterJumpFeel()

@@ -12,6 +12,7 @@ public static class SoundManager
         Die,
         boost,
     }
+    
     private static Dictionary<Sound, float> soundtimerDictionary;
     public static void initialize()
     {
