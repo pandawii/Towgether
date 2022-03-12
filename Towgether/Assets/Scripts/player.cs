@@ -36,7 +36,7 @@ public class player : MonoBehaviour
     [Header("PowerUp")]
     [SerializeField] float timerForPowerUp;
     [SerializeField] float timerForPowerUpMax;
-
+    bool soundPlayed;
     private void Awake()
     {
         
@@ -81,7 +81,7 @@ public class player : MonoBehaviour
     }
     public float fallmutliplier = 2.5f;
     public float lowJumpMutliplier = 2f;
-
+    
     void HandleBoostUsage()
     {
 
@@ -109,11 +109,13 @@ public class player : MonoBehaviour
         if (IncreaseBoost)
         {
             BoostCapacity +=Time.deltaTime;
+            soundPlayed = true;
         }
-        if (BoostCapacity >= 1f)
+        if (BoostCapacity >= 1f&&soundPlayed)
         {
             IncreaseBoost = false;
-
+            SoundManager.PlaySound(SoundManager.Sound.FullChargeBoost);
+            soundPlayed = false;
         }
         
         boostScript.setboost(BoostCapacity);

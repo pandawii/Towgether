@@ -11,6 +11,7 @@ public static class SoundManager
         JumpPad,
         Die,
         boost,
+        FullChargeBoost,
     }
     
     private static Dictionary<Sound, float> soundtimerDictionary;
