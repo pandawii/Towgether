@@ -333,7 +333,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 14.37085, y: -20.190247}
+  m_AnchoredPosition: {x: 39, y: -39}
   m_SizeDelta: {x: 28.7417, y: 40.380493}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &298805068
@@ -5709,19 +5709,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 318785696806549142, guid: 935cff68d0381f94498a9ff098a5c71c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.636513
+      value: 5.165027
       objectReference: {fileID: 0}
     - target: {fileID: 318785696806549142, guid: 935cff68d0381f94498a9ff098a5c71c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2384024
+      value: 0.6625232
+      objectReference: {fileID: 0}
+    - target: {fileID: 318785696806549142, guid: 935cff68d0381f94498a9ff098a5c71c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5637151
       objectReference: {fileID: 0}
     - target: {fileID: 318785696806549142, guid: 935cff68d0381f94498a9ff098a5c71c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.09
+      value: 0.2479
       objectReference: {fileID: 0}
     - target: {fileID: 318785696806549142, guid: 935cff68d0381f94498a9ff098a5c71c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.3823
+      value: -3.2284
       objectReference: {fileID: 0}
     - target: {fileID: 318785696806549142, guid: 935cff68d0381f94498a9ff098a5c71c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6064,7 +6068,7 @@ MonoBehaviour:
   isGrounded: 0
   movementSpeed: 16.8
   movement: 0
-  jumpforce: 45.47
+  jumpforce: 49
   Jumprequest: 0
   timerForPowerUp: 0
   timerForPowerUpMax: 0
@@ -6166,7 +6170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687573446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36, y: -2.9, z: 0}
+  m_LocalPosition: {x: -0.22, y: -1.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1865805334}

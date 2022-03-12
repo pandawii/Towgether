@@ -85,13 +85,13 @@ public class player : MonoBehaviour
     void HandleBoostUsage()
     {
 
-        if (Input.GetKey(KeyCode.LeftControl) && BoostCapacity > 0&&BoostCapacityCooldown>0&&!IncreaseBoost)
+        if ((Input.GetKey(KeyCode.LeftControl)|| (Input.GetKey(KeyCode.LeftShift)) && BoostCapacity > 0&&BoostCapacityCooldown>0&&!IncreaseBoost))
         {
          rb.AddForce(Vector2.up* 90f*Time.deltaTime, ForceMode2D.Impulse);
          BoostCapacity -= Time.deltaTime;
          Dust.Play();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        else if (Input.GetKeyUp(KeyCode.LeftControl)|| Input.GetKeyUp(KeyCode.LeftShift))
         {
             Dust.Stop();
         }
@@ -122,14 +122,14 @@ public class player : MonoBehaviour
     }
     void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && timerForPowerUp > 0)
+        if ((Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.W)) && isGrounded && timerForPowerUp > 0)
         {
             Jumprequest = true;
             anim.SetTrigger("Jump");
             Dust2.Play();
             SoundManager.PlaySound(SoundManager.Sound.Jump);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && timerForPowerUp > 0&& Input.GetKeyDown(KeyCode.LeftControl))
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded && timerForPowerUp > 0&& Input.GetKeyDown(KeyCode.LeftControl))
         {
             Jumprequest = true;
             anim.SetTrigger("Jump");           
@@ -137,7 +137,7 @@ public class player : MonoBehaviour
             Dust.Play();
             SoundManager.PlaySound(SoundManager.Sound.Jump);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && timerForPowerUp <= 0)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded && timerForPowerUp <= 0)
         {
             Jumprequest = true;
             anim.SetTrigger("Jump");
@@ -147,9 +147,9 @@ public class player : MonoBehaviour
     void BetterJumpFeel()
     {
 
-        if (Jumprequest && timerForPowerUp > 0 && Input.GetKeyDown(KeyCode.LeftControl))
+        if (Jumprequest && timerForPowerUp > 0 && (Input.GetKey(KeyCode.LeftControl)||(Input.GetKey(KeyCode.LeftShift))))
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 4f, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 3f, ForceMode2D.Impulse);
 
             Jumprequest = false;
         }
@@ -169,7 +169,7 @@ public class player : MonoBehaviour
         {
             rb.gravityScale = fallmutliplier;
         }
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        else if (rb.velocity.y > 0 && (!Input.GetKey(KeyCode.Space)||!Input.GetKey(KeyCode.W)))
         {
             rb.gravityScale = lowJumpMutliplier;
         }
