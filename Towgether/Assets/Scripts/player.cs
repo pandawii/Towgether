@@ -10,10 +10,10 @@ public class player : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     SpriteRenderer sp;
+
     
-     
-    
-    [Header("Boost")]
+
+   [Header("Boost")]
     [SerializeField] float BoostCapacity;
     [SerializeField] float BoostCapacityMax;
     [SerializeField] float BoostCapacityCooldown;
