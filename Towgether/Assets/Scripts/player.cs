@@ -49,7 +49,7 @@ public class player : MonoBehaviour
         BoostCapacityCooldownMax = 5f;
         IncreaseBoost = false;
         boostScript.SetMaxBoost(BoostCapacityMax);
-        timerForPowerUpMax = 4f;
+        timerForPowerUpMax = 5f;
         SoundManager.initialize();
     }
     
