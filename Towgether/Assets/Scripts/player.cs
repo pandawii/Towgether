@@ -43,7 +43,7 @@ public class player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();       
-        BoostCapacityMax = 1f;
+        BoostCapacityMax = 0f;
         BoostCapacity += BoostCapacityMax;
         BoostCapacityCooldown = 5f;
         BoostCapacityCooldownMax = 5f;
