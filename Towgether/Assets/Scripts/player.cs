@@ -43,7 +43,7 @@ public class player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();       
-        BoostCapacityMax = 0f;
+        BoostCapacityMax = 1f;
         BoostCapacity += BoostCapacityMax;
         BoostCapacityCooldown = 5f;
         BoostCapacityCooldownMax = 5f;
@@ -52,9 +52,9 @@ public class player : MonoBehaviour
         timerForPowerUpMax = 5f;
         SoundManager.initialize();
     }
-    
+  
    
-    
+
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(GroundCheckPosition.position, CheckRaidus, WhatIsGround);
@@ -85,13 +85,13 @@ public class player : MonoBehaviour
     void HandleBoostUsage()
     {
 
-        if ((Input.GetKey(KeyCode.LeftControl)|| (Input.GetKey(KeyCode.LeftShift)) && BoostCapacity > 0&&BoostCapacityCooldown>0&&!IncreaseBoost))
+        if ((Input.GetKey(KeyCode.LeftControl)|| (Input.GetKey(KeyCode.LeftShift) || Input.GetMouseButton(0)) && BoostCapacity > 0&&BoostCapacityCooldown>0&&!IncreaseBoost))
         {
-         rb.AddForce(Vector2.up* 90f*Time.deltaTime, ForceMode2D.Impulse);
+         rb.AddForce(Vector2.up* 120f*Time.deltaTime, ForceMode2D.Impulse);
          BoostCapacity -= Time.deltaTime;
          Dust.Play();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftControl)|| Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftControl)|| Input.GetKeyUp(KeyCode.LeftShift)||Input.GetMouseButtonUp(0))
         {
             Dust.Stop();
         }
@@ -129,7 +129,7 @@ public class player : MonoBehaviour
             Dust2.Play();
             SoundManager.PlaySound(SoundManager.Sound.Jump);
         }
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded && timerForPowerUp > 0&& Input.GetKeyDown(KeyCode.LeftControl))
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded && timerForPowerUp > 0&& ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0) || (Input.GetKey(KeyCode.LeftShift)))))
         {
             Jumprequest = true;
             anim.SetTrigger("Jump");           
@@ -147,9 +147,9 @@ public class player : MonoBehaviour
     void BetterJumpFeel()
     {
 
-        if (Jumprequest && timerForPowerUp > 0 && (Input.GetKey(KeyCode.LeftControl)||(Input.GetKey(KeyCode.LeftShift))))
+        if (Jumprequest && timerForPowerUp > 0 && (Input.GetKey(KeyCode.LeftControl)||(Input.GetKey(KeyCode.LeftShift)||Input.GetMouseButton(0))))
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 3f, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * 120f * Time.deltaTime, ForceMode2D.Impulse);
 
             Jumprequest = false;
         }
@@ -223,4 +223,5 @@ public class player : MonoBehaviour
         }
     }
 
+    
 }

@@ -60,36 +60,36 @@ public class camera : MonoBehaviour
         {
             case Diffculty.easy:
                
-            transform.position += new Vector3(0,5f, 0) * Time.deltaTime;
+            transform.position += new Vector3(0,6f, 0) * Time.deltaTime;
               
                 
             break;
 
             case Diffculty.medium:
               
-                transform.position += new Vector3(0,5.5f, 0) * Time.deltaTime;
+                transform.position += new Vector3(0,6.5f, 0) * Time.deltaTime;
               
 
                 break;
 
             case Diffculty.hard:
                 
-                transform.position += new Vector3(0, 7f, 0) * Time.deltaTime;
-            
+                transform.position += new Vector3(0, 7.5f, 0) * Time.deltaTime;
+           
 
                 break;
 
             case Diffculty.impossible:
                 
-                transform.position += new Vector3(0, 7.3f, 0) * Time.deltaTime;
+                transform.position += new Vector3(0, 8f, 0) * Time.deltaTime;
 
                 break;
         }
     }
     private Diffculty GetDiffculty()
     {
-        if (timer >= 70) return Diffculty.impossible;
-        if (timer >= 30) return Diffculty.hard;      
+        if (timer >= 44) return Diffculty.impossible;
+        if (timer >= 25) return Diffculty.hard;      
         if (timer  >= 10) return Diffculty.medium;
        
        

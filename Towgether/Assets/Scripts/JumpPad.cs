@@ -6,7 +6,7 @@ public class JumpPad : MonoBehaviour
 {
     Animator anim;
     [SerializeField]Animator playeranim;
-    float bounce = 80f;
+    float bounce = 100f;
    
     private void Awake()
     {
