@@ -28,7 +28,7 @@ public class Score : MonoBehaviour
         {
             AddScore();
         }
-        score.text = scorenum.ToString("0m").Normalize();
+        score.text = scorenum.ToString("0").Normalize();
         //If our scoree is greter than highscore, set new higscore and save.
         if (scorenum > PlayerPrefs.GetInt(highScoreKey, scorenum))
         {

@@ -66,7 +66,7 @@ public class player : MonoBehaviour
         {
             rb.gravityScale = 1f;
             BoostCapacity -= Time.deltaTime;
-            rb.AddForce(200f*Time.deltaTime*Vector2.up, ForceMode2D.Impulse);
+            rb.AddForce(100f*Time.deltaTime*Vector2.up, ForceMode2D.Impulse);
             Dust.Play();
             if (BoostCapacity <= 0)
             {
@@ -97,8 +97,7 @@ public class player : MonoBehaviour
                 increaseBoost = false; 
             }
         }
-        Debug.Log(BoostCapacity);
-        Debug.Log(BoostCooldown);
+        
         boostScript.setboost(BoostCapacity);
     }
 

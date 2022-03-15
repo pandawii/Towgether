@@ -7,7 +7,7 @@ public class OutlinePlatform : MonoBehaviour
 
 
     [Header("rightPLatform")]
-     float speed = 6f;
+     float speed = 8f;
      int direction = 1;
 
 
@@ -15,11 +15,11 @@ public class OutlinePlatform : MonoBehaviour
     {
 
 
-        if (transform.position.x > 24f)
+        if (transform.position.x > 10f)
         {
             direction = -1;
         }
-        if (transform.position.x < -24f)
+        if (transform.position.x < -10f)
         {
             direction = 1;
         }

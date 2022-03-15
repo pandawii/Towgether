@@ -23,7 +23,7 @@ public class DissolvingPlatform : MonoBehaviour
         }
         if (alpha <= 0)
         {
-            gameObject.GetComponent<EdgeCollider2D>().enabled = false; 
+            gameObject.GetComponent<BoxCollider2D>().enabled = false; 
         }
     }
     private void OnCollisionEnter2D(Collision2D col)
