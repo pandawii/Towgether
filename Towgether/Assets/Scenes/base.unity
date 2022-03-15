@@ -567,8 +567,8 @@ MonoBehaviour:
   slider: {fileID: 610867482}
   gradient:
     serializedVersion: 2
-    key0: {r: 0.8867924, g: 0.81556624, b: 0.4141153, a: 1}
-    key1: {r: 0.28627452, g: 0.5372549, b: 1, a: 1}
+    key0: {r: 0.4481132, g: 0.7891664, b: 1, a: 1}
+    key1: {r: 0, g: 0.35164833, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.189
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6471,7 +6471,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.189
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

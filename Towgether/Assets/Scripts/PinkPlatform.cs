@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PinkPlatform : MonoBehaviour
 {
-    float Jumpforce = 60f;
+    float Jumpforce = 80f;
 
    
    

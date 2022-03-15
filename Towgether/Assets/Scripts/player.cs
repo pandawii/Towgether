@@ -56,6 +56,7 @@ public class player : MonoBehaviour
         boostScript.SetMaxBoost(BoostCapacityMax);
         timerForPowerUpMax = 5f;
         SoundManager.initialize();
+        boostScript.setboost(0f);
     }
 
     void HandleBoostUsage()
@@ -73,9 +74,11 @@ public class player : MonoBehaviour
                 rb.gravityScale = 9f;
             }
         }
-        if(Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
+        {
             rb.gravityScale = 9f;
-
+            Dust.Stop();
+        }
         if (BoostCapacity < 1f)
         {
             BoostCooldown -= Time.deltaTime;
