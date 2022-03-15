@@ -428,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378521816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 17.1, z: -346.40817}
+  m_LocalPosition: {x: 0.06, y: 12.8, z: -346.40817}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5596,8 +5596,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.00000047683716}
-  m_SizeDelta: {x: 237.5547, y: 35.8062}
+  m_AnchoredPosition: {x: 0, y: 0.0000038146973}
+  m_SizeDelta: {x: 526.6903, y: 79.3872}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &859803411
 MonoBehaviour:
@@ -5612,7 +5612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7285237, g: 1, b: 0.6556604, a: 1}
+  m_Color: {r: 0.5019608, g: 0.427451, b: 0.8588236, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5620,12 +5620,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: a4f32b2c8e673a441a4a26270fe53e05, type: 3}
-    m_FontSize: 23
+    m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
+    m_FontSize: 46
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 41
+    m_MinSize: 0
+    m_MaxSize: 156
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -6214,12 +6214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dust: {fileID: 1865805332}
   Dust2: {fileID: 692037031}
-  BoostCapacity: 0
-  BoostCapacityMax: 0
-  BoostCapacityCooldown: 0
-  BoostCapacityCooldownMax: 0
-  IncreaseBoost: 0
-  boostScript: {fileID: 610867481}
   GroundCheckPosition: {fileID: 1253222952}
   WhatIsGround:
     serializedVersion: 2
@@ -6230,10 +6224,16 @@ MonoBehaviour:
   movement: 0
   jumpforce: 60
   Jumprequest: 0
+  fallmutliplier: 16.4
+  lowJumpMutliplier: 7.7
   timerForPowerUp: 0
   timerForPowerUpMax: 0
-  fallmutliplier: 23.64
-  lowJumpMutliplier: 12.87
+  BoostCapacity: 0
+  BoostCapacityMax: 0
+  boostScript: {fileID: 610867481}
+  BoostCooldown: 0
+  BoostCooldownMax: 0
+  increaseBoost: 0
 --- !u!70 &1687573448
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

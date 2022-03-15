@@ -26,11 +26,11 @@ public class TryHarder : MonoBehaviour
         {
             timer-= Time.deltaTime;
         }
-        if (timer < 2&&timer>1) StartText.text="Try";
-        if (timer < 1&&timer>0) StartText.text = "Harder";
+        if (timer < 2&&timer>1) StartText.text="3";
+        if (timer < 1&&timer>0) StartText.text = "2";
         if (timer <= 0)
         {
-            StartText.text = "Good Luck";
+            StartText.text = "1";
             
         }
         if (timer <= -1) {

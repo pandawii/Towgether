@@ -5,8 +5,8 @@ using UnityEngine;
 public class JumpPad : MonoBehaviour
 {
     Animator anim;
-    [SerializeField]Animator playeranim;
-    float bounce = 100f;
+   
+    float bounce = 200f;
    
     private void Awake()
     {

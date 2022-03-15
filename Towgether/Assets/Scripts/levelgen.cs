@@ -95,12 +95,12 @@ public class levelgen : MonoBehaviour
             Timer -= Time.deltaTime;
             if (Timer <= 0&&rb.velocity.y<100f)
             {
-                Debug.Log(rb.velocity.y);
+              
                 setPlatform(GetPlatform());
                 Timer += maxTimer;
             }else if( rb.velocity.y > 100f)
             {
-                Debug.Log(rb.velocity.y);
+                
                 setPlatform(GetPlatform());
                 
             }
@@ -139,7 +139,7 @@ public class levelgen : MonoBehaviour
         switch (random_num_to_spawn_ToChoose_jumppad)
         {
             case 1:
-                if (counter_To_Spawn_JumpPad % 8 == 0)
+                if (counter_To_Spawn_JumpPad % 15 == 0)
                 {
                    
                     //instantiate jump pad
@@ -196,7 +196,7 @@ public class levelgen : MonoBehaviour
                 }
                 break;
             case 6:
-                if (counter_To_Spawn_JumpPad %3== 0)
+                if (counter_To_Spawn_JumpPad %17== 0)
                 {
 
                     Transform PowerUp = Instantiate(GameAssets.Getinstance().PowerUp);
