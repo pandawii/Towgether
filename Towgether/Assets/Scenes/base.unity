@@ -6486,7 +6486,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -17, y: -23}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &981857561
@@ -6629,11 +6629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 318785696806549142, guid: 935cff68d0381f94498a9ff098a5c71c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.1504
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 318785696806549142, guid: 935cff68d0381f94498a9ff098a5c71c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.5671
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 318785696806549142, guid: 935cff68d0381f94498a9ff098a5c71c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6701,7 +6701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1124506841
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6944,7 +6944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12651,6 +12651,12 @@ MonoBehaviour:
   MainMenu: {fileID: 1475916904}
   MainMenuAnim: {fileID: 1475916906}
   AfterStart: {fileID: 1832333048}
+  Pause: {fileID: 298805068}
+  ScoreNumber: {fileID: 1602110338}
+  Boost: {fileID: 677406314}
+  PressAnyKeyToplay: {fileID: 859803411}
+  levelgen: {fileID: 1869380760}
+  rb: {fileID: 1687573449}
 --- !u!95 &2040804407
 Animator:
   serializedVersion: 3

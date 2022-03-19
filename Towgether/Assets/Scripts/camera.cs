@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class camera : MonoBehaviour
@@ -21,13 +22,19 @@ public class camera : MonoBehaviour
     [SerializeField] GameObject MainMenu;
     [SerializeField] Animator MainMenuAnim;
     [SerializeField] GameObject AfterStart;
+    [SerializeField] Image Pause;
+    [SerializeField] Text ScoreNumber;
+    [SerializeField] Image Boost;
+    [SerializeField] Text PressAnyKeyToplay;
+    [SerializeField] levelgen levelgen;
+    [SerializeField] Rigidbody2D rb;
     GameObject Player;
     float timerforStartButton;
     
     public enum Diffculty{ easy,medium,hard,impossible}
     float timer;
     bool startButtonPressed;
-
+    float alpha;
 
     private void Awake()
     {
@@ -42,6 +49,10 @@ public class camera : MonoBehaviour
         Player.SetActive(false);
         timerforStartButton = 1f;
         startButtonPressed = false;
+        levelgen.enabled = false;
+        alpha = 0;
+        Time.timeScale = 1;
+        rb.bodyType = RigidbodyType2D.Static;
     }
     // Update is called once per frame
     public void RestartButton()
@@ -50,10 +61,12 @@ public class camera : MonoBehaviour
     }
     public void StartButton()
     {
-        startButtonPressed = true;       
+        startButtonPressed = true;
+        
     }
     private void Update()
     {
+        
         timer += Time.deltaTime;
         if (player.transform.position.y < positionTORestart.position.y)
         {
@@ -66,14 +79,25 @@ public class camera : MonoBehaviour
         }
         if (startButtonPressed)
         {
+            AfterStart.SetActive(true);
+            alpha += Time.deltaTime;
             timerforStartButton -= Time.deltaTime;
             MainMenuAnim.SetBool("Pressed", startButtonPressed);
+            Pause.color = new Vector4(Pause.color.r, Pause.color.g, Pause.color.b, alpha) ;
+            ScoreNumber.color = new Vector4(ScoreNumber.color.r, ScoreNumber.color.g, ScoreNumber.color.b, alpha);
+            Boost.color = new Vector4(Boost.color.r, Boost.color.g, Boost.color.b, alpha);
+            PressAnyKeyToplay.color = new Vector4(PressAnyKeyToplay.color.r, PressAnyKeyToplay.color.g, PressAnyKeyToplay.color.b, alpha);
+        
         }
         if(timerforStartButton <= 0)
         {
             Player.SetActive(true);
-            MainMenu.SetActive(false);
-            AfterStart.SetActive(true);
+            MainMenu.SetActive(false);           
+            if (Input.anyKeyDown)
+            {
+                levelgen.enabled = true;
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            }
         }
     }
     void LateUpdate()
