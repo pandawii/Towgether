@@ -26,8 +26,8 @@ public class player : MonoBehaviour
     [SerializeField] float movement = 0f;
     [SerializeField] float jumpforce = 30f;
     [SerializeField] bool Jumprequest;
-    [SerializeField] float fallmutliplier = 16.4f;
-    [SerializeField] float lowJumpMutliplier = 7.7f;
+   // [SerializeField] float fallmutliplier = 16.4f;
+   // [SerializeField] float lowJumpMutliplier = 7.7f;
 
     [Header("PowerUp")]
     [SerializeField] float timerForPowerUp;
@@ -42,6 +42,8 @@ public class player : MonoBehaviour
     [SerializeField] float BoostCooldown;
     [SerializeField] float BoostCooldownMax;
     [SerializeField] bool increaseBoost ;
+
+    
     private void Awake()
     {
         
@@ -71,12 +73,20 @@ public class player : MonoBehaviour
             if (BoostCapacity <= 0)
             {
                 Dust.Stop();
-                rb.gravityScale = 9f;
+                rb.gravityScale = 14f;
             }
+        }
+        if (rb.velocity.y >= 150f)
+        {
+            rb.gravityScale += Time.deltaTime*2f;
+        }
+       else if(rb.velocity.y < 20f)
+        {
+            rb.gravityScale = 14f;
         }
         if (Input.GetMouseButtonUp(0))
         {
-            rb.gravityScale = 9f;
+            rb.gravityScale = 14f;
             Dust.Stop();
         }
         if (BoostCapacity < 1f)
@@ -107,7 +117,7 @@ public class player : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(GroundCheckPosition.position, CheckRaidus, WhatIsGround);
         anim.SetBool("Isgrounded", isGrounded);
 
-        movement = Input.GetAxis("Horizontal")* movementSpeed;
+        movement = Input.acceleration.x* movementSpeed;
         Handlingflip();
 
        
@@ -115,43 +125,42 @@ public class player : MonoBehaviour
         anim.SetFloat("Speed", Mathf.Abs(movement));
 
 
-        HandleJump();
+       
         HandleBoostUsage();
         timeForPowerUpHandler();
-
-
+       
 
     }
    
    
     
    
-    void HandleJump()
+    void HandleJumpForPc()
     {
-        if ((Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.W)) && isGrounded && timerForPowerUp > 0)
-        {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 2f, ForceMode2D.Impulse);
-            anim.SetTrigger("Jump");
-            Dust2.Play();
-            SoundManager.PlaySound(SoundManager.Sound.Jump);
-        }
+        //if ( Input.GetMouseButtonDown(0) && isGrounded && timerForPowerUp > 0)
+        //{
+        //    GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 2f, ForceMode2D.Impulse);
+        //    anim.SetTrigger("Jump");
+        //    Dust2.Play();
+        //    SoundManager.PlaySound(SoundManager.Sound.Jump);
+        //}
         
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded && timerForPowerUp <= 0)
-        {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
-            anim.SetTrigger("Jump");
-            SoundManager.PlaySound(SoundManager.Sound.Jump);
-        }
+        //if ( Input.GetMouseButtonDown(0) && isGrounded && timerForPowerUp <= 0)
+        //{
+        //    GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+        //    anim.SetTrigger("Jump");
+        //    SoundManager.PlaySound(SoundManager.Sound.Jump);
+        //}
 
-        if (rb.velocity.y < 0)
-        {
-            rb.velocity += Physics2D.gravity.y * (fallmutliplier - 1) * Time.deltaTime * Vector2.up;
-        }
-        else if (!Input.GetKey(KeyCode.W))
-        {      
-            if(rb.velocity.y > 0)
-            rb.velocity += Physics2D.gravity.y * (lowJumpMutliplier - 1)*Time.deltaTime *Vector2.up;
-        }
+        //if (rb.velocity.y < 0)
+        //{
+        //    rb.velocity += Physics2D.gravity.y * (fallmutliplier - 1) * Time.deltaTime * Vector2.up;
+        //}
+        //else if (!Input.GetMouseButton(0))
+        //{      
+        //    if(rb.velocity.y > 0)
+        //    rb.velocity += Physics2D.gravity.y * (lowJumpMutliplier - 1)*Time.deltaTime *Vector2.up;
+        //}
         
     }
    
@@ -198,7 +207,17 @@ public class player : MonoBehaviour
 
             SoundManager.PlaySound(SoundManager.Sound.PowerUp);
         }
+       
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isGrounded && timerForPowerUp > 0&&collision.transform.tag=="Ground")
+        {
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpforce * 1.1f, ForceMode2D.Impulse);
+            anim.SetTrigger("Jump");
+            Dust2.Play();
+            SoundManager.PlaySound(SoundManager.Sound.Jump);
+        }
     }
 
-    
 }

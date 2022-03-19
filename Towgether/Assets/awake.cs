@@ -20,7 +20,7 @@ public class awake : MonoBehaviour
         if (Started)
         {
             if (alpha < 0.7f)
-                alpha += Time.deltaTime;
+                alpha += 0.1f;
 
             sp.color = new Color(0, 0, 0, alpha);
         }

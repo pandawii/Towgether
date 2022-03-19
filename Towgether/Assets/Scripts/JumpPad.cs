@@ -6,7 +6,7 @@ public class JumpPad : MonoBehaviour
 {
     Animator anim;
    
-    float bounce = 200f;
+    float bounce = 120f;
    
     private void Awake()
     {

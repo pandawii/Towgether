@@ -6,12 +6,18 @@ using UnityEngine;
 public class Score : MonoBehaviour
 {
 
+
+
+
+
+
     [SerializeField] Transform player;
+    [SerializeField] Text HighScoreText;
     Text score;
     int highScore;
     int scorenum;
     string highScoreKey = "HighScore";
-    [SerializeField] Text HighScoreText;
+   
     void AddScore()
     {
         scorenum++;
@@ -19,20 +25,23 @@ public class Score : MonoBehaviour
     private void Awake()
     {
         score = GetComponent<Text>();
-        HighScoreText.text = PlayerPrefs.GetInt(highScoreKey,0).ToString();
+        highScore = PlayerPrefs.GetInt(highScoreKey, 0);
+        HighScoreText.text = highScore.ToString();
     }
-    void Update()                
+    void Update()
     {
-        
-        if (player.position.y > 0&&player.position.y>scorenum)
+       
+        if (player.position.y > 0 && player.position.y > scorenum)
         {
             AddScore();
         }
+
         score.text = scorenum.ToString("0").Normalize();
         //If our scoree is greter than highscore, set new higscore and save.
-        if (scorenum > PlayerPrefs.GetInt(highScoreKey, scorenum))
+
+        if (scorenum > highScore)
         {
-           
+
             PlayerPrefs.SetInt(highScoreKey, scorenum);
             PlayerPrefs.Save();
             HighScoreText.text = scorenum.ToString();

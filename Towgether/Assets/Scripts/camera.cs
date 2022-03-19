@@ -8,30 +8,72 @@ public class camera : MonoBehaviour
     
     float SmoothSpeed = .3f;
     Vector3 currentvelocity;
+    Vector2 currentvelocity2d;
     bool playerStartedPlaying;
     [SerializeField] Transform player;
     [SerializeField] Transform Position_For_Camera_To_start_Moving;
     [SerializeField] Transform positionTODelete;
     [SerializeField] Transform positionTORestart;
+    [SerializeField] GameObject GameOverMenu;
+    [SerializeField] GameObject InGameMenu;
+    [SerializeField] GameObject PauseButton;
+    [SerializeField] player PlayerScript;
+    [SerializeField] GameObject MainMenu;
+    [SerializeField] Animator MainMenuAnim;
+    [SerializeField] GameObject AfterStart;
+    GameObject Player;
+    float timerforStartButton;
+    
     public enum Diffculty{ easy,medium,hard,impossible}
     float timer;
-   
-   
+    bool startButtonPressed;
+
+
     private void Awake()
     {
         playerStartedPlaying = false;
         timer = 0f;
         setDiffculty(Diffculty.easy);
-       
+        GameOverMenu.SetActive(false);
+        InGameMenu.SetActive(true);
+        PauseButton.SetActive(true);
+        PlayerScript.enabled = true;
+        Player = GameObject.Find("Player");
+        Player.SetActive(false);
+        timerforStartButton = 1f;
+        startButtonPressed = false;
     }
     // Update is called once per frame
+    public void RestartButton()
+    {
+        SceneManager.LoadScene("base");
+    }
+    public void StartButton()
+    {
+        startButtonPressed = true;       
+    }
     private void Update()
     {
         timer += Time.deltaTime;
         if (player.transform.position.y < positionTORestart.position.y)
         {
-            SceneManager.LoadScene("base");
-
+            Debug.Log("Lost");
+            GameOverMenu.SetActive(true);
+            InGameMenu.SetActive(false);
+            PauseButton.SetActive(false);
+            PlayerScript.enabled = false;
+            Player.SetActive(false);
+        }
+        if (startButtonPressed)
+        {
+            timerforStartButton -= Time.deltaTime;
+            MainMenuAnim.SetBool("Pressed", startButtonPressed);
+        }
+        if(timerforStartButton <= 0)
+        {
+            Player.SetActive(true);
+            MainMenu.SetActive(false);
+            AfterStart.SetActive(true);
         }
     }
     void LateUpdate()

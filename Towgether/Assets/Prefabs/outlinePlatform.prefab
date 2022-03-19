@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 1197994560}
   - component: {fileID: 1197994561}
   - component: {fileID: 6435112103265718854}
+  - component: {fileID: -2420279221283707450}
   m_Layer: 7
   m_Name: outlinePlatform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,3 +165,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.3166165, y: 0.51512915}
   m_EdgeRadius: 0
+--- !u!114 &-2420279221283707450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4844287652477538120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29f13a14c95ef4c8a6e2f70de676ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

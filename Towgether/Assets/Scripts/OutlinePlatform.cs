@@ -7,7 +7,7 @@ public class OutlinePlatform : MonoBehaviour
 
 
     [Header("rightPLatform")]
-     float speed = 8f;
+     float speed = 5f;
      int direction = 1;
 
 

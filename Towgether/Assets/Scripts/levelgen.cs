@@ -32,7 +32,7 @@ public class levelgen : MonoBehaviour
     private void Awake()
     {
         PlatformList = new List<Platform>();
-        maxTimer = 0.15f;
+        maxTimer = 0.20f;
         GameStarted = false;
         Counter_for_platforms = 0;
         RandomForTypeOfPlatform = 0;
@@ -41,9 +41,9 @@ public class levelgen : MonoBehaviour
     }
    Vector2 RandomGap()
     {
-        if (Counter_for_platforms > 150) return new Vector2(5, 6);
-        if (Counter_for_platforms > 100) return new Vector2(6.5f,7 );
-        if (Counter_for_platforms > 50)return new Vector2(7,8);
+        if (Counter_for_platforms > 180) return new Vector2(5.5f, 6.5f);
+        if (Counter_for_platforms > 120) return new Vector2(6.5f,7f );
+        if (Counter_for_platforms > 40)return new Vector2(7,8);
         
 
         return new Vector2(10, 11);
@@ -79,7 +79,6 @@ public class levelgen : MonoBehaviour
         HandlePlatFormDeletion();
         SpawnTimer();
         RandomGap();
-        Debug.Log(Counter_for_platforms);
     }
     void HandlePlatFormDeletion()
     {
@@ -105,16 +104,16 @@ public class levelgen : MonoBehaviour
         if (GameStarted)
         {
             Timer -= Time.deltaTime;
-            if (Timer <= 0&&rb.velocity.y<100f)
+            
+           if (Timer <= 0&&rb.velocity.y<120f)
             {
               
                 setPlatform(GetPlatform());
                 Timer += maxTimer;
-            }else if( rb.velocity.y > 200f)
+            }
+          else  if (rb.velocity.y > 150f)
             {
-                
                 setPlatform(GetPlatform());
-                
             }
         }
     }
