@@ -11,9 +11,9 @@ public class player : MonoBehaviour
     Animator anim;
     SpriteRenderer sp;
 
-    
 
- 
+
+
 
     [Header("GroundCheck")]
     [SerializeField] Transform GroundCheckPosition;
