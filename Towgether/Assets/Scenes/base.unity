@@ -489,8 +489,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2040804406}
-        m_TargetAssemblyTypeName: camera, Assembly-CSharp
+      - m_Target: {fileID: 2040804408}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: RestartButton
         m_Mode: 1
         m_Arguments:
@@ -6129,7 +6129,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 981857560}
-  - component: {fileID: 981857561}
   m_Layer: 5
   m_Name: PressAnyKeyToStart
   m_TagString: Untagged
@@ -6154,21 +6153,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -17, y: -23}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &981857561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981857559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a7b6fec90e27e744863642514165cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1002910083
 GameObject:
   m_ObjectHideFlags: 0
@@ -6369,7 +6356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1124506841
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7120,7 +7107,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -369.30002, y: -587.4001}
   m_SizeDelta: {x: -787.5, y: -1294.2}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7243,7 +7230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1832333049
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12160,7 +12147,6 @@ GameObject:
   - component: {fileID: 2040804404}
   - component: {fileID: 2040804403}
   - component: {fileID: 2040804406}
-  - component: {fileID: 2040804407}
   - component: {fileID: 2040804408}
   m_Layer: 8
   m_Name: Main Camera
@@ -12253,25 +12239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1687573451}
   Position_For_Camera_To_start_Moving: {fileID: 378521817}
---- !u!95 &2040804407
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040804402}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7d4f7c3bf007b5a4fbda65e3a3027629, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &2040804408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12279,8 +12246,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040804402}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b5f9fff136031542a3c2acb29a9af2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameOverMenu: {fileID: 1124506840}
