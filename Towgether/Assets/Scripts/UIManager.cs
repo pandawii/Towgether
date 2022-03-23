@@ -11,13 +11,14 @@ public class UIManager : MonoBehaviour
 
     //GameObjects
     GameObject Press_Any_where_To_Start;
-    [SerializeField]GameObject GameOverMenu;
+    [SerializeField] GameObject GameOverMenu;
+    [SerializeField] GameObject PauseMenu;
     //Transform
     Transform positionTORestart;
     Transform Player_transform;
     Rigidbody2D rb;
 
-
+    bool IsGameLost;
 
     void Awake()
     {
@@ -55,16 +56,38 @@ public class UIManager : MonoBehaviour
     }
     private void GameLost()
     {     
-            Debug.Log("Lost");
-            PlayerScript.enabled = false;
-            rb.bodyType = RigidbodyType2D.Static;
-            GameOverMenu.SetActive(true);
+        Debug.Log("Lost");
+        PlayerScript.enabled = false;
+        rb.bodyType = RigidbodyType2D.Static;
+        GameOverMenu.SetActive(true);
+        IsGameLost = true;
     }
   
+    public void PauseButton()
+    {
+        if (!IsGameLost)
+        {
+            Time.timeScale = 0f;
+            PlayerScript.enabled = false;
+            rb.bodyType = RigidbodyType2D.Static;
+            PauseMenu.SetActive(true);
+        }     
+    }
+    public void ResumeButton()
+    {
+        Time.timeScale = 1f;
+        PlayerScript.enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        PauseMenu.SetActive(false);
 
+    }
     public void RestartButton()
     {
         SceneManager.LoadScene("base");
     }
         
+    public void MainMenuButton()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
 }

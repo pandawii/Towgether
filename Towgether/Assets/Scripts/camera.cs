@@ -13,7 +13,7 @@ public class camera : MonoBehaviour
     bool playerStartedPlaying;
     public enum Diffculty { easy, medium, hard, impossible }
     float timer;
-    float CameraMoveSpeed = 6f;
+    float CameraMoveSpeed = 9f;
 
 
     private void Awake()
