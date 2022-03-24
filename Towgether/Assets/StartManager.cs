@@ -10,8 +10,10 @@ public class StartManager : MonoBehaviour
     bool started;
     [SerializeField] Image StartMenu;
     [SerializeField] Text StartText;
-
- 
+    [SerializeField] Image Facebook;
+    [SerializeField] Image Instgram;
+    [SerializeField] Image Reddit;
+    [SerializeField] Image Settings;
     private void Awake()
     {
         started = false;
@@ -26,29 +28,59 @@ public class StartManager : MonoBehaviour
     {
         if (started)
         {
-            Move_Start_Menu_To_The_Left();
+            Dissolve_Start_Menu();
         }   
         
 
     }
-    void Move_Start_Menu_To_The_Left()
+    void Dissolve_Start_Menu()
     {
-        
-        float A_StartMenu = StartMenu.color.a;
-        float A_StartText = StartText.color.a;
 
-        A_StartMenu -= Time.deltaTime;
-        A_StartText -=Time.deltaTime;
+        DissolveItem startmenu  = new DissolveItem (StartMenu, StartMenu.color, StartMenu.color.a);
+        startmenu.Alphadecrease();
 
-        Vector4 alpha_Menu =new Vector4(StartMenu.color.r, StartMenu.color.g, StartMenu.color.b, A_StartMenu);
-        Vector4 alpha_Text = new Vector4(StartText.color.r, StartText.color.g, StartText.color.b, A_StartText);
+        DissolveItem facebook = new DissolveItem(Facebook, Facebook.color, Facebook.color.a);
+        facebook.Alphadecrease();
 
-        StartMenu.color = alpha_Menu;
-        StartText.color = alpha_Text;
+        DissolveItem instgram = new DissolveItem(Instgram, Instgram.color, Instgram.color.a);
+        instgram.Alphadecrease();
 
-        if (A_StartMenu <= 0)
+        DissolveItem reddit = new DissolveItem(Reddit, Reddit.color, Reddit.color.a);
+        reddit.Alphadecrease();
+
+        DissolveItem settings = new DissolveItem(Settings, Settings.color, Settings.color.a);
+        settings.Alphadecrease();
+
+        if (Settings.color.a <= 0)
         {
             SceneManager.LoadScene("base");
         }
+
     }
+
+
+    public class DissolveItem
+    {
+        
+        Image image;
+        Vector4 dissolveitemVector;     
+        float A_Dissolveitem;
+
+      public  DissolveItem(Image image,Vector4 dissolveitemVector, float A_Dissolveitem)
+        {
+            this.A_Dissolveitem = A_Dissolveitem;
+            this.dissolveitemVector = dissolveitemVector;
+            this.image = image;  
+        }
+
+        public void Alphadecrease()
+        {
+            A_Dissolveitem = image.color.a;
+            A_Dissolveitem -= Time.deltaTime;
+            dissolveitemVector = new Vector4(image.color.r, image.color.g, image.color.b, A_Dissolveitem);
+            image.color = dissolveitemVector;
+        }
+
+    }
+    
 }

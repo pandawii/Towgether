@@ -64,7 +64,7 @@ public class player : MonoBehaviour
         {
             rb.gravityScale = 1f;
             BoostCapacity -= Time.deltaTime;
-            rb.AddForce(100f*Time.deltaTime*Vector2.up, ForceMode2D.Impulse);
+            rb.AddForce(170f*Time.deltaTime*Vector2.up, ForceMode2D.Impulse);
             Dust.Play();
             if (BoostCapacity <= 0)
             {
@@ -74,7 +74,7 @@ public class player : MonoBehaviour
         }
         if (rb.velocity.y >= 150f)
         {
-            rb.gravityScale += Time.deltaTime*2f;
+            rb.gravityScale += Time.deltaTime*9f;
         }
        else if(rb.velocity.y < 20f)
         {

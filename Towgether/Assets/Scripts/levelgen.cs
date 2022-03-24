@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class levelgen : MonoBehaviour
 {
-    Vector3 startPosition1 = new Vector3(0f, 110f, 0f);
+    Vector3 startPosition1 = new Vector3(0f, 122f, 0f);
     
 
-    Vector3 firstPlatforms =new Vector3(0,5f,0);
+    Vector3 firstPlatforms =new Vector3(0,10f,0);
    
     float Timer;
     float maxTimer;
@@ -51,12 +51,12 @@ public class levelgen : MonoBehaviour
     }
     private void Start()
     {
-        Transform playGroundPlatform = Instantiate(GameAssets.Getinstance().platform, new Vector3(0,0,-3f), Quaternion.identity);
-        SpriteRenderer spboxColliderplayGroundPlatform = playGroundPlatform.GetComponent<SpriteRenderer>();
-        BoxCollider2D boxColliderplayGroundPlatform = playGroundPlatform.GetComponent<BoxCollider2D>();
-        spboxColliderplayGroundPlatform.size = new Vector2(7f, 1f);
-        boxColliderplayGroundPlatform.size = new Vector2(7f - 1f, 0.14f);
-        boxColliderplayGroundPlatform.offset = new Vector2(0, 0);
+        //Transform playGroundPlatform = Instantiate(GameAssets.Getinstance().platform, new Vector3(0,0,-3f), Quaternion.identity);
+        //SpriteRenderer spboxColliderplayGroundPlatform = playGroundPlatform.GetComponent<SpriteRenderer>();
+        //BoxCollider2D boxColliderplayGroundPlatform = playGroundPlatform.GetComponent<BoxCollider2D>();
+        //spboxColliderplayGroundPlatform.size = new Vector2(7f, 1f);
+        //boxColliderplayGroundPlatform.size = new Vector2(7f - 1f, 0.14f);
+        //boxColliderplayGroundPlatform.offset = new Vector2(0, 0);
 
         for (int i = 0; i < 10; i++)
         {

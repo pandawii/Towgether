@@ -8,11 +8,13 @@ public class UIManager : MonoBehaviour
 {
     //scripts
     player PlayerScript;
-
+    levelgen lvlgenscript;
     //GameObjects
-    GameObject Press_Any_where_To_Start;
     [SerializeField] GameObject GameOverMenu;
     [SerializeField] GameObject PauseMenu;
+    [SerializeField] GameObject Tilt;
+    [SerializeField] GameObject FirstPlatform;
+    [SerializeField] GameObject PauseButtonObject;
     //Transform
     Transform positionTORestart;
     Transform Player_transform;
@@ -27,12 +29,15 @@ public class UIManager : MonoBehaviour
         positionTORestart = GameObject.Find("PositionToRestart").transform;
         Player_transform = GameObject.Find("Player").transform;
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-        
+        lvlgenscript = GameObject.Find("LevelGenerator").GetComponent<levelgen>();
 
-        Time.timeScale = 0f;
-        PlayerScript.enabled = false;
-        rb.bodyType = RigidbodyType2D.Static;
+     
+        PlayerScript.enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
         GameOverMenu.SetActive(false);
+        lvlgenscript.enabled = false;
+        Tilt.SetActive(true);
+
     }
 
 
@@ -41,6 +46,8 @@ public class UIManager : MonoBehaviour
         if (Input.anyKey)
         {
             GameStarted();
+            lvlgenscript.enabled = true;
+            Tilt.SetActive(false);
         }
         if (Player_transform.transform.position.y < positionTORestart.position.y) 
         {
@@ -51,16 +58,18 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("GameStarted");
         Time.timeScale = 1f;
-        PlayerScript.enabled = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
+        PauseButtonObject.SetActive(true);
+
     }
     private void GameLost()
-    {     
+    {
+        GameOverMenu.SetActive(true);
         Debug.Log("Lost");
         PlayerScript.enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
-        GameOverMenu.SetActive(true);
         IsGameLost = true;
+        PauseButtonObject.SetActive(false);
     }
   
     public void PauseButton()
@@ -71,7 +80,9 @@ public class UIManager : MonoBehaviour
             PlayerScript.enabled = false;
             rb.bodyType = RigidbodyType2D.Static;
             PauseMenu.SetActive(true);
-        }     
+            PauseButtonObject.SetActive(false);
+
+        }
     }
     public void ResumeButton()
     {
@@ -79,10 +90,12 @@ public class UIManager : MonoBehaviour
         PlayerScript.enabled = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
         PauseMenu.SetActive(false);
-
+        PauseButtonObject.SetActive(true);
     }
     public void RestartButton()
     {
+        Time.timeScale = 1f;
+
         SceneManager.LoadScene("base");
     }
         
