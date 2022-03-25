@@ -8,6 +8,7 @@ public class camera : MonoBehaviour
    
     [SerializeField] Transform player;
     [SerializeField] Transform Position_For_Camera_To_start_Moving;
+    [SerializeField] Text SpeedText;
     float SmoothSpeed = .3f;
     Vector3 currentvelocity;
     bool playerStartedPlaying;
@@ -20,7 +21,8 @@ public class camera : MonoBehaviour
     {
         playerStartedPlaying = false;
         timer = 0f;
-        setDiffculty(Diffculty.easy);      
+        setDiffculty(Diffculty.easy);
+        SpeedText.text = "0x";
     }
   
   
@@ -53,19 +55,25 @@ public class camera : MonoBehaviour
         switch (diffculty)
         {
             case Diffculty.easy:             
-                 transform.position += new Vector3(0, CameraMoveSpeed, 0) * Time.deltaTime;                           
-                 break;
+                 transform.position += new Vector3(0, CameraMoveSpeed, 0) * Time.deltaTime;
+                 SpeedText.text = "1x";
+                break;
 
             case Diffculty.medium:           
-                 transform.position += new Vector3(0, CameraMoveSpeed+.5f, 0) * Time.deltaTime;              
-                 break;
+                 transform.position += new Vector3(0, CameraMoveSpeed+2f, 0) * Time.deltaTime;
+                 SpeedText.text = "2x";
 
-            case Diffculty.hard:      
-                transform.position += new Vector3(0, CameraMoveSpeed + 1.5f, 0) * Time.deltaTime;
+                break;
+
+            case Diffculty.hard:
+                transform.position += new Vector3(0, CameraMoveSpeed + 3f, 0) * Time.deltaTime;
+                SpeedText.text = "3x";
+
                 break;
 
             case Diffculty.impossible:               
-                transform.position += new Vector3(0, CameraMoveSpeed + 2f, 0) * Time.deltaTime;
+                transform.position += new Vector3(0, CameraMoveSpeed + 5f, 0) * Time.deltaTime;
+                SpeedText.text = "4x";
                 break;
         }
     }
