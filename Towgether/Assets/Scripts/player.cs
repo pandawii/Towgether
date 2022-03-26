@@ -74,7 +74,7 @@ public class player : MonoBehaviour
         }
         if (rb.velocity.y >= 150f)
         {
-            rb.gravityScale += Time.deltaTime*44f;
+            rb.gravityScale += Time.deltaTime*33f;
         }
        else if(rb.velocity.y < 20f)
         {
